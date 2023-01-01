@@ -1,0 +1,15 @@
+{
+  "version": 2,
+  "dgSpecHash": "Cj6tIxdJnPhYakFfh3SWZSP3hgEfm15+hVF2PKJ3NHY3O4CLu9b87Y1wuwSzRkfr8pZ/bF0eex6e5aAuI1cdNw==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\Artsiom_Kharkevich\\Study\\DiplomaProject\\Manufactoring\\Manufacturing.Api\\Manufacturing.Api.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\Artsiom_Kharkevich\\.nuget\\packages\\microsoft.extensions.apidescription.server\\3.0.0\\microsoft.extensions.apidescription.server.3.0.0.nupkg.sha512",
+    "C:\\Users\\Artsiom_Kharkevich\\.nuget\\packages\\microsoft.openapi\\1.2.3\\microsoft.openapi.1.2.3.nupkg.sha512",
+    "C:\\Users\\Artsiom_Kharkevich\\.nuget\\packages\\swashbuckle.aspnetcore\\6.2.3\\swashbuckle.aspnetcore.6.2.3.nupkg.sha512",
+    "C:\\Users\\Artsiom_Kharkevich\\.nuget\\packages\\swashbuckle.aspnetcore.swagger\\6.2.3\\swashbuckle.aspnetcore.swagger.6.2.3.nupkg.sha512",
+    "C:\\Users\\Artsiom_Kharkevich\\.nuget\\packages\\swashbuckle.aspnetcore.swaggergen\\6.2.3\\swashbuckle.aspnetcore.swaggergen.6.2.3.nupkg.sha512",
+    "C:\\Users\\Artsiom_Kharkevich\\.nuget\\packages\\swashbuckle.aspnetcore.swaggerui\\6.2.3\\swashbuckle.aspnetcore.swaggerui.6.2.3.nupkg.sha512"
+  ],
+  "logs": []
+}
