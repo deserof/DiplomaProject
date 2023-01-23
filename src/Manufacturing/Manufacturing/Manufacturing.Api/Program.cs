@@ -59,22 +59,25 @@ builder.Services.AddOpenIddict()
     // Register the OpenIddict server components.
     .AddServer(options =>
     {
-    // Enable the token endpoint.
-    options.SetTokenEndpointUris("connect/token");
+        // Enable the token endpoint.
+        options.SetTokenEndpointUris("connect/token");
 
-    // Enable the password flow.
-    options.AllowPasswordFlow();
+        // Enable the password flow.
+        options.AllowPasswordFlow();
 
-    // Accept anonymous clients (i.e clients that don't send a client_id).
-    options.AcceptAnonymousClients();
+        // Accept anonymous clients (i.e clients that don't send a client_id).
+        options.AcceptAnonymousClients();
 
         // Register the signing and encryption credentials.
+        //options.AddDevelopmentEncryptionCertificate()
+        //       .AddDevelopmentSigningCertificate();
         options.AddEphemeralEncryptionKey()
                .AddEphemeralSigningKey();
 
         // Register the ASP.NET Core host and configure the ASP.NET Core-specific options.
         options.UseAspNetCore()
-               .EnableTokenEndpointPassthrough();
+               .EnableTokenEndpointPassthrough()
+               .DisableTransportSecurityRequirement();
     })
 
     // Register the OpenIddict validation components.
@@ -109,7 +112,8 @@ builder.Services.AddSwaggerGen(options =>
             {
                 Password = new OpenApiOAuthFlow
                 {
-                    TokenUrl = new Uri("https://localhost:7115/connect/token"),
+                    // TokenUrl = new Uri("https://des123.bsite.net/connect/token"),
+                    TokenUrl = new Uri("http://localhost:7115/connect/token"),
                 }
             }
         });
@@ -136,7 +140,7 @@ app.UseSwaggerUI();
 
 app.UseMiddleware<ExceptionHandlingMiddleware>();
 
-app.UseHttpsRedirection();
+//app.UseHttpsRedirection();
 
 app.UseAuthentication();
 app.UseAuthorization();
