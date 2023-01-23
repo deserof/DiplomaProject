@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MobileClient.Pages.DetailsPage"
+             Title="DetailsPage">
+    <VerticalStackLayout>
+        <Label 
+            Text="Details Page"
+            VerticalOptions="Center" 
+            HorizontalOptions="Center" />
+
+        <Entry
+            x:Name="DetailIdEntry"
+            BackgroundColor="LightGray"
+            Placeholder="Id детали"/>
+
+        <Button
+            x:Name="ShowDetailById" 
+            Text="Показать" 
+            Clicked="ShowDetailById_Clicked"
+            HorizontalOptions="Center" />
+
+        <Label
+            x:Name="DetailsByIdLabel"/>
+
+    </VerticalStackLayout>
+</ContentPage>

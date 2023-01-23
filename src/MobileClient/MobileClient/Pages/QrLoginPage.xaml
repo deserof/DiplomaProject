@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MobileClient.Pages.QrLoginPage"
+             xmlns:zxing="clr-namespace:ZXing.Net.Maui.Controls;assembly=ZXing.Net.MAUI"
+             Title="QrLoginPage">
+    <VerticalStackLayout>
+        <Label 
+            Text="QR Login Page"
+            VerticalOptions="Center" 
+            HorizontalOptions="Center" />
+
+        <zxing:CameraBarcodeReaderView 
+            x:Name="barcodeReader" 
+            WidthRequest="300" 
+            HeightRequest="300"                                      
+            IsDetecting="True" 
+            IsTorchOn="False" 
+            BarcodesDetected="CameraBarcodeReaderView_BarcodesDetected" />
+
+        <Label
+            x:Name="barcodeResult"
+            Padding="0, 100, 0, 0"
+            Text="Result: "
+            SemanticProperties.HeadingLevel="Level1"
+            FontSize="32"
+            VerticalOptions="Center"
+            HorizontalOptions="Center" />
+
+        <Button
+            x:Name="ClearButton" 
+            Text="Clear" 
+            Clicked="ClearButton_Clicked"
+            VerticalOptions="Center"
+            HorizontalOptions="Center" />
+
+    </VerticalStackLayout>
+</ContentPage>

@@ -57,7 +57,18 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <PackageReference Include="OpenIddict.Client" Version="4.0.0" />
+	  <PackageReference Include="OpenIddict.Client.SystemNetHttp" Version="4.0.0" />
 	  <PackageReference Include="ZXing.Net.Maui" Version="0.1.0-preview.7" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <MauiXaml Update="Pages\DetailsPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Pages\QrLoginPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	</ItemGroup>
 
 </Project>

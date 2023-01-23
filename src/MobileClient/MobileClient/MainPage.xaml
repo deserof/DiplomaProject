@@ -1,7 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:zxing="clr-namespace:ZXing.Net.Maui.Controls;assembly=ZXing.Net.MAUI"
              x:Class="MobileClient.MainPage">
 
     <ScrollView>
@@ -10,26 +9,28 @@
             Padding="30,0"
             VerticalOptions="Center">
 
-            <zxing:CameraBarcodeReaderView 
-                x:Name="barcodeReader" 
-                WidthRequest="300" 
-                HeightRequest="300"                                      
-                IsDetecting="True" 
-                IsTorchOn="False" 
-                BarcodesDetected="CameraBarcodeReaderView_BarcodesDetected" />
+            <Button
+                x:Name="QrCodeButton" 
+                Text="Войти через QR Code" 
+                Clicked="QrCodeButton_Clicked"
+                HorizontalOptions="Center" />
 
             <Label
-                x:Name="barcodeResult"
-                Text="Result: "
-                SemanticProperties.HeadingLevel="Level1"
-                FontSize="32"
+                Text="Почта"/>
+            <Entry
+                x:Name="EmailEntry"
+                BackgroundColor="LightGray"/>
+            <Label
+                Text="Пароль"/>
+            <Entry
+                x:Name="PasswordEntry"
+                BackgroundColor="LightGray"/>
+            <Button
+                x:Name="LoginButton" 
+                Text="Войти" 
+                Clicked="LoginButton_Clicked"
                 HorizontalOptions="Center" />
 
-            <Button
-                x:Name="ClearButton" 
-                Text="Clear" 
-                Clicked="ClearButton_Clicked"
-                HorizontalOptions="Center" />
 
         </VerticalStackLayout>
     </ScrollView>

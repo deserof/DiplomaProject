@@ -2,5 +2,6 @@
 {
     public class DetailResponse
     {
+        public string Name { get; set; }
     }
 }
