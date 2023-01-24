@@ -35,9 +35,9 @@
 
         <Label
             x:Name="barcodeResult"
-            Padding="0, 100, 0, 0"
+            Margin="0, 40, 0, 0"
             Text="Result: "
-            FontSize="32"
+            FontSize="14"
             VerticalOptions="Center"
             HorizontalOptions="Center" />
 
