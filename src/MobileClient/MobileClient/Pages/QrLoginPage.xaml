@@ -18,12 +18,10 @@
             IsTorchOn="False" 
             BarcodesDetected="CameraBarcodeReaderView_BarcodesDetected" />
 
-        <Label
-            x:Name="barcodeResult"
-            Padding="0, 100, 0, 0"
-            Text="Result: "
-            SemanticProperties.HeadingLevel="Level1"
-            FontSize="32"
+        <Button
+            x:Name="LoginButton" 
+            Text="Войти" 
+            Clicked="LoginButton_Clicked"
             VerticalOptions="Center"
             HorizontalOptions="Center" />
 
@@ -31,6 +29,15 @@
             x:Name="ClearButton" 
             Text="Clear" 
             Clicked="ClearButton_Clicked"
+            Margin="0, 40, 0, 0"
+            VerticalOptions="Center"
+            HorizontalOptions="Center" />
+
+        <Label
+            x:Name="barcodeResult"
+            Padding="0, 100, 0, 0"
+            Text="Result: "
+            FontSize="32"
             VerticalOptions="Center"
             HorizontalOptions="Center" />
 

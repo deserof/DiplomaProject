@@ -1,3 +1,5 @@
+using MobileClient.Models;
+using Newtonsoft.Json;
 using OpenIddict.Client;
 using ZXing.Net.Maui;
 
@@ -5,33 +7,22 @@ namespace MobileClient.Pages;
 
 public partial class QrLoginPage : ContentPage
 {
-	public QrLoginPage()
-	{
-		InitializeComponent();
-	}
+    public QrLoginPage()
+    {
+        InitializeComponent();
+    }
 
-    private async void CameraBarcodeReaderView_BarcodesDetected(object sender, BarcodeDetectionEventArgs e)
+    private void CameraBarcodeReaderView_BarcodesDetected(object sender, BarcodeDetectionEventArgs e)
     {
         Dispatcher.Dispatch(() =>
         {
-            barcodeResult.Text = $"Result: {e.Results[0].Value} {e.Results[0].Format}";
+            barcodeResult.Text = e.Results[0].Value;
         });
-
-        //try
-        //{
-        //    TokenStorage.Token = await GetTokenAsync("qwe@gmail.com", "password1!Q");
-
-        //    await Navigation.PushAsync(new DetailsPage());
-        //}
-        //catch (Exception ex)
-        //{
-        //    await DisplayAlert("Error", ex.Message, "OK");
-        //}
     }
 
     private void ClearButton_Clicked(object sender, EventArgs e)
     {
-        barcodeResult.Text = "Result:";
+        barcodeResult.Text = string.Empty;
     }
 
     private async Task<string> GetTokenAsync(string email, string password)
@@ -44,5 +35,24 @@ public partial class QrLoginPage : ContentPage
             password: password);
 
         return response.AccessToken;
+    }
+
+    private async void LoginButton_Clicked(object sender, EventArgs e)
+    {
+        try
+        {
+            if (!string.IsNullOrEmpty(barcodeResult.Text))
+            {
+                var user = JsonConvert.DeserializeObject<UserLoginModel>(barcodeResult.Text);
+                TokenStorage.Token = await GetTokenAsync(user.Email, user.Password);
+                barcodeResult.Text = string.Empty;
+
+                await Navigation.PushAsync(new DetailsPage());
+            }
+        }
+        catch (Exception ex)
+        {
+            await DisplayAlert("Error", ex.Message, "OK");
+        }
     }
 }
