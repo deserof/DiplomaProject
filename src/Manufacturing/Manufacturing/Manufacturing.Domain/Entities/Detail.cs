@@ -2,7 +2,7 @@
 
 namespace Manufacturing.Domain.Entities
 {
-    public class Detail : BaseEntity
+    public class Detail : BaseAuditableEntity
     {
         public string Name { get; set; }
     }

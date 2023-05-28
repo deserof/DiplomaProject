@@ -1,5 +1,6 @@
-﻿using Manufacturing.Application.Common.Interfaces;
-using System.Security.Claims;
+﻿using System.Security.Claims;
+using Manufacturing.Application.Common.Interfaces;
+using OpenIddict.Abstractions;
 
 namespace Manufacturing.Api.Services
 {
@@ -12,6 +13,6 @@ namespace Manufacturing.Api.Services
             _httpContextAccessor = httpContextAccessor;
         }
 
-        public string? UserId => _httpContextAccessor.HttpContext?.User?.FindFirstValue(ClaimTypes.NameIdentifier);
+        public string? UserId => _httpContextAccessor.HttpContext?.User?.FindFirstValue(OpenIddictConstants.Claims.Name);
     }
 }
