@@ -1,4 +1,4 @@
-﻿using Manufacturing.Api.Models;
+﻿using Manufacturing.Infrastructure.Persistence;
 
 namespace Manufacturing.Api
 {

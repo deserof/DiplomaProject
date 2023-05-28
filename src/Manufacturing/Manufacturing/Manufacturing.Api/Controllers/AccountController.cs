@@ -1,5 +1,6 @@
-﻿using Manufacturing.Api.Models;
-using Manufacturing.Api.ViewModels.Account;
+﻿using Manufacturing.Api.ViewModels.Account;
+using Manufacturing.Infrastructure.Identity;
+using Manufacturing.Infrastructure.Persistence;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -24,7 +25,6 @@ namespace Manufacturing.Api.Controllers
         [HttpPost("~/account/register")]
         public async Task<IActionResult> Register([FromBody] RegisterViewModel model)
         {
-            EnsureDatabaseCreated(_applicationDbContext);
             if (ModelState.IsValid)
             {
                 var user = await _userManager.FindByNameAsync(model.Email);
@@ -47,20 +47,6 @@ namespace Manufacturing.Api.Controllers
         }
 
         #region Helpers
-
-        // The following code creates the database and schema if they don't exist.
-        // This is a temporary workaround since deploying database through EF migrations is
-        // not yet supported in this release.
-        // Please see this http://go.microsoft.com/fwlink/?LinkID=615859 for more information on how to do deploy the database
-        // when publishing your application.
-        private static void EnsureDatabaseCreated(ApplicationDbContext context)
-        {
-            if (!_databaseChecked)
-            {
-                _databaseChecked = true;
-                context.Database.EnsureCreated();
-            }
-        }
 
         private void AddErrors(IdentityResult result)
         {

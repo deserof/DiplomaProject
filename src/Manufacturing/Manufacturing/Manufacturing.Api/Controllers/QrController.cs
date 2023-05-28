@@ -1,5 +1,4 @@
-﻿using Manufacturing.Api.Models;
-using Manufacturing.Domain.ResponseModels;
+﻿using Manufacturing.Infrastructure.Identity;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -26,11 +25,7 @@ namespace Manufacturing.Api.Controllers
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public async Task<IActionResult> GenerateAsync(int DetailId, CancellationToken cancellationToken)
         {
-            return Ok(new List<DetailResponse>()
-            {
-                new DetailResponse { Name = "detaile name" },
-                new DetailResponse { Name = "detaile name 2" }
-            });
+            return Ok();
         }
     }
 }

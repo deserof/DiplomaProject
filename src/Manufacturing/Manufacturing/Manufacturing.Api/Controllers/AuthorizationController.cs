@@ -1,4 +1,4 @@
-﻿using Manufacturing.Api.Models;
+﻿using Manufacturing.Infrastructure.Identity;
 using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;

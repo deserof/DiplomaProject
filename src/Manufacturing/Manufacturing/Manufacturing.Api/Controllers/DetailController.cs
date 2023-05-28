@@ -1,7 +1,11 @@
-﻿using Manufacturing.Api.Models;
-using Manufacturing.Domain.RequestModels;
-using Manufacturing.Domain.ResponseModels;
-using Microsoft.AspNetCore.Authentication;
+﻿using Manufacturing.Application.Common.Models;
+using Manufacturing.Application.Details.Commands.CreateDetail;
+using Manufacturing.Application.Details.Commands.DeleteDetail;
+using Manufacturing.Application.Details.Commands.UpdateDetail;
+using Manufacturing.Application.Details.Queries.GetDetail;
+using Manufacturing.Application.Details.Queries.GetDetailsWithPagination;
+using Manufacturing.Infrastructure.Identity;
+using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -16,93 +20,79 @@ namespace Manufacturing.Api.Controllers
     [ApiController]
     public class DetailController : ControllerBase
     {
+        private readonly IMediator _mediator;
         private readonly UserManager<ApplicationUser> _userManager;
 
-        public DetailController(UserManager<ApplicationUser> userManager)
+        public DetailController(UserManager<ApplicationUser> userManager, IMediator mediator)
         {
             _userManager = userManager;
+            _mediator = mediator;
         }
 
         [HttpGet]
-        [ProducesResponseType(typeof(IEnumerable<DetailResponse>), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(PaginatedList<DetailDto>), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status401Unauthorized)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-        public async Task<IActionResult> GetAsync(int page, int pageStep, int pageSize, CancellationToken cancellationToken)
+        public async Task<PaginatedList<DetailDto>> Get([FromQuery] GetDetailsWithPaginationQuery query)
         {
             var user = await _userManager.FindByIdAsync(User.GetClaim(Claims.Subject));
             if (user is null)
             {
-                return Challenge(
-                    authenticationSchemes: OpenIddictValidationAspNetCoreDefaults.AuthenticationScheme,
-                    properties: new AuthenticationProperties(new Dictionary<string, string>
-                    {
-                        [OpenIddictValidationAspNetCoreConstants.Properties.Error] = Errors.InvalidToken,
-                        [OpenIddictValidationAspNetCoreConstants.Properties.ErrorDescription] =
-                            "The specified access token is bound to an account that no longer exists."
-                    }));
+                //return Challenge(
+                //    authenticationSchemes: OpenIddictValidationAspNetCoreDefaults.AuthenticationScheme,
+                //    properties: new AuthenticationProperties(new Dictionary<string, string>
+                //    {
+                //        [OpenIddictValidationAspNetCoreConstants.Properties.Error] = Errors.InvalidToken,
+                //        [OpenIddictValidationAspNetCoreConstants.Properties.ErrorDescription] =
+                //            "The specified access token is bound to an account that no longer exists."
+                //    }));
             }
 
-            return Ok(new List<DetailResponse>()
-            {
-                new DetailResponse { Name = "detaile name" },
-                new DetailResponse { Name = "detaile name 2" }
-            });
+            return await _mediator.Send(query);
         }
 
         [HttpGet("{id:int}")]
-        [ProducesResponseType(typeof(DetailResponse), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(DetailDto), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status401Unauthorized)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-        public async Task<IActionResult> GetAsync(int id, CancellationToken cancellationToken)
+        public async Task<ActionResult<DetailDto>> Get(int id)
         {
-            var user = await _userManager.FindByIdAsync(User.GetClaim(Claims.Subject));
-            if (user is null)
-            {
-                return Challenge(
-                    authenticationSchemes: OpenIddictValidationAspNetCoreDefaults.AuthenticationScheme,
-                    properties: new AuthenticationProperties(new Dictionary<string, string>
-                    {
-                        [OpenIddictValidationAspNetCoreConstants.Properties.Error] = Errors.InvalidToken,
-                        [OpenIddictValidationAspNetCoreConstants.Properties.ErrorDescription] =
-                            "The specified access token is bound to an account that no longer exists."
-                    }));
-            }
-
-            return Ok(new DetailResponse
-            {
-                Name = "name by id"
-            });
+            return await _mediator.Send(new GetDetailQuery(id));
         }
 
         [HttpPost]
-        [ProducesResponseType(typeof(CreateDetailRequest), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(CreateDetailCommand), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status401Unauthorized)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-        public async Task<IActionResult> CreateAsync(CreateDetailRequest request, CancellationToken cancellationToken)
+        public async Task<ActionResult<int>> Create(CreateDetailCommand command)
         {
-            throw new NotImplementedException();
+            return await _mediator.Send(command);
         }
 
         [HttpPut]
-        [ProducesResponseType(typeof(UpdateDetailRequest), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(UpdateDetailCommand), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-        public async Task<IActionResult> UpdateAsync(UpdateDetailRequest request, CancellationToken cancellationToken)
+        public async Task<IActionResult> Update(UpdateDetailCommand command)
         {
-            throw new NotImplementedException();
+            await _mediator.Send(command);
+
+            return NoContent();
         }
 
         [HttpDelete("{id}")]
-        [ProducesResponseType(typeof(DetailResponse), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(DeleteDetailsCommand), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status401Unauthorized)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-        public async Task<IActionResult> DeleteAsync(int id, CancellationToken cancellationToken)
+        public async Task<IActionResult> Delete(int id)
         {
-            throw new NotImplementedException();
+            await _mediator.Send(new DeleteDetailsCommand(id));
+
+            return NoContent();
         }
     }
 }
