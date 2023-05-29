@@ -15,15 +15,15 @@ using static OpenIddict.Abstractions.OpenIddictConstants;
 
 namespace Manufacturing.Api.Controllers
 {
-    [Authorize(AuthenticationSchemes = OpenIddictValidationAspNetCoreDefaults.AuthenticationScheme)]
+   // [Authorize(AuthenticationSchemes = OpenIddictValidationAspNetCoreDefaults.AuthenticationScheme)]
     [Route("api/[controller]")]
     [ApiController]
-    public class DetailController : ControllerBase
+    public class DetailsController : ControllerBase
     {
         private readonly IMediator _mediator;
         private readonly UserManager<ApplicationUser> _userManager;
 
-        public DetailController(UserManager<ApplicationUser> userManager, IMediator mediator)
+        public DetailsController(UserManager<ApplicationUser> userManager, IMediator mediator)
         {
             _userManager = userManager;
             _mediator = mediator;

@@ -10,6 +10,16 @@ var builder = WebApplication.CreateBuilder(args);
 var environment = builder.Environment.EnvironmentName;
 builder.Configuration.AddJsonFile($"appsettings.{environment}.json", optional: true, reloadOnChange: true);
 
+builder.Services.AddCors(options =>
+{
+    options.AddDefaultPolicy(builder =>
+    {
+        builder.AllowAnyOrigin()
+            .AllowAnyMethod()
+            .AllowAnyHeader();
+    });
+}); 
+
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
@@ -32,6 +42,8 @@ builder.Services.AddQuartzHostedService(options => options.WaitForJobsToComplete
 builder.Services.AddHostedService<Worker>();
 
 var app = builder.Build();
+
+app.UseCors();
 
 app.UseSwagger();
 app.UseSwaggerUI();
