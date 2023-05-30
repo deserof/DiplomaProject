@@ -13,9 +13,10 @@ namespace Manufacturing.Infrastructure
         {
             services.AddScoped<AuditableEntitySaveChangesInterceptor>();
             services.AddScoped<IApplicationDbContext>(provider => provider.GetRequiredService<ApplicationDbContext>());
+            services.AddScoped<ApplicationDbContextInitialiser>();
 
             services.AddTransient<IDateTime, DateTimeService>();
-            
+
             return services;
         }
     }

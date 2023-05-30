@@ -1,9 +1,10 @@
 using Manufacturing.Api;
 using Manufacturing.Api.Middlewares;
 using Manufacturing.Api.Services;
+using Manufacturing.Application;
 using Manufacturing.Application.Common.Interfaces;
 using Manufacturing.Infrastructure;
-using Manufacturing.Application;
+using Manufacturing.Infrastructure.Persistence;
 using Quartz;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -18,7 +19,7 @@ builder.Services.AddCors(options =>
             .AllowAnyMethod()
             .AllowAnyHeader();
     });
-}); 
+});
 
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
@@ -42,6 +43,18 @@ builder.Services.AddQuartzHostedService(options => options.WaitForJobsToComplete
 builder.Services.AddHostedService<Worker>();
 
 var app = builder.Build();
+
+// Configure the HTTP request pipeline.
+if (app.Environment.IsDevelopment())
+{
+    // Initialise and seed database
+    using (var scope = app.Services.CreateScope())
+    {
+        var initialiser = scope.ServiceProvider.GetRequiredService<ApplicationDbContextInitialiser>();
+        await initialiser.InitialiseAsync();
+        await initialiser.SeedAsync();
+    }
+}
 
 app.UseCors();
 

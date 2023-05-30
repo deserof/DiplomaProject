@@ -7,6 +7,20 @@ namespace Manufacturing.Application.Common.Interfaces
     {
         DbSet<Detail> Details { get; }
 
+        DbSet<Employee> Employees { get; }
+
+        DbSet<ProductionProcess> ProductionProcesses { get; }
+
+        DbSet<Product> Products { get; }
+
+        DbSet<ProductionLine> ProductionLines { get; }
+
+        DbSet<ProductionOrder> ProductionOrders { get; }
+
+        DbSet<ProcessExecution> ProcessExecutions { get; }
+
+        DbSet<QualityControl> QualityControls { get; }
+
         Task<int> SaveChangesAsync(CancellationToken cancellationToken);
     }
 }

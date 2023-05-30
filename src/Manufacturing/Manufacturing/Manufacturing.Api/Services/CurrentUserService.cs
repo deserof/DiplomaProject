@@ -1,6 +1,6 @@
-﻿using System.Security.Claims;
-using Manufacturing.Application.Common.Interfaces;
+﻿using Manufacturing.Application.Common.Interfaces;
 using OpenIddict.Abstractions;
+using System.Security.Claims;
 
 namespace Manufacturing.Api.Services
 {

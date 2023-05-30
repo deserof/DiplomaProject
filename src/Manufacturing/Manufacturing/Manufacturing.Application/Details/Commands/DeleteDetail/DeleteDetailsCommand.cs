@@ -19,7 +19,7 @@ namespace Manufacturing.Application.Details.Commands.DeleteDetail
 
         public async Task Handle(DeleteDetailsCommand request, CancellationToken cancellationToken)
         {
-            var entity = await _context.Details.FindAsync(new object[] {request.Id}, cancellationToken);
+            var entity = await _context.Details.FindAsync(new object[] { request.Id }, cancellationToken);
 
             if (entity == null)
             {

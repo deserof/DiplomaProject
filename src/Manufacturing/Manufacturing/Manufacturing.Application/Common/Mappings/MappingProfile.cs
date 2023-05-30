@@ -1,5 +1,5 @@
-using System.Reflection;
 using AutoMapper;
+using System.Reflection;
 
 namespace Manufacturing.Application.Common.Mappings;
 

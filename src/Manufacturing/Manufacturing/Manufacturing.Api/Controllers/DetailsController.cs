@@ -6,16 +6,14 @@ using Manufacturing.Application.Details.Queries.GetDetail;
 using Manufacturing.Application.Details.Queries.GetDetailsWithPagination;
 using Manufacturing.Infrastructure.Identity;
 using MediatR;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using OpenIddict.Abstractions;
-using OpenIddict.Validation.AspNetCore;
 using static OpenIddict.Abstractions.OpenIddictConstants;
 
 namespace Manufacturing.Api.Controllers
 {
-   // [Authorize(AuthenticationSchemes = OpenIddictValidationAspNetCoreDefaults.AuthenticationScheme)]
+    // [Authorize(AuthenticationSchemes = OpenIddictValidationAspNetCoreDefaults.AuthenticationScheme)]
     [Route("api/[controller]")]
     [ApiController]
     public class DetailsController : ControllerBase
