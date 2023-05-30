@@ -4,6 +4,7 @@ using Manufacturing.Infrastructure.Persistence;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Manufacturing.Infrastructure.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230530002900_addfile")]
+    partial class addfile
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -194,12 +196,6 @@ namespace Manufacturing.Infrastructure.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("FileId"), 1L, 1);
 
-                    b.Property<DateTime>("Created")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("CreatedBy")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<byte[]>("FileContent")
                         .HasColumnType("varbinary(max)");
 
@@ -208,15 +204,6 @@ namespace Manufacturing.Infrastructure.Migrations
 
                     b.Property<int>("FileType")
                         .HasColumnType("int");
-
-                    b.Property<int>("Id")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime?>("LastModified")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("LastModifiedBy")
-                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("ProductId")
                         .HasColumnType("int");

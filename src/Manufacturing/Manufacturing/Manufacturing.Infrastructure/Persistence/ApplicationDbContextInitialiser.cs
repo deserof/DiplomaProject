@@ -197,18 +197,31 @@ namespace Manufacturing.Infrastructure.Persistence
             {
                 new Product
                 {
-                    Name = "Пожарный рукав 1,5\"",
-                    Description = "Пожарный рукав диаметром 1,5 дюйма с текстильным покрытием и стандартными фитингами",
+                    Name = "Пожарный рукав 1,5\"", 
+                    Description = "Пожарный рукав диаметром 1,5 дюйма с текстильным покрытием и стандартными фитингами", 
                     CreationDate = DateTime.Parse("2021-01-01"),
                     QualityStatus = "OK"
                 },
                 new Product
                 {
-                    Name = "Пожарный рукав 2\"",
+                    Name = "Пожарный рукав 2\"", 
                     Description = "Пожарный рукав диаметром 2 дюйма с резиновым покрытием и стандартными фитингами",
                     CreationDate = DateTime.Parse("2021-02-01"),
                     QualityStatus = "OK"
-
+                },
+                new Product
+                {
+                    Name = "Пожарный рукав 3\"", 
+                    Description = "Пожарный рукав диаметром 3 дюйма с текстильным покрытием и стандартными фитингами", 
+                    CreationDate = DateTime.Parse("2021-03-01"), 
+                    QualityStatus = "OK"
+                },
+                new Product
+                {
+                    Name = "Пожарный рукав 4\"",
+                    Description = "Пожарный рукав диаметром 4 дюйма с резиновым покрытием и стандартными фитингами", 
+                    CreationDate = DateTime.Parse("2021-04-01"), 
+                    QualityStatus = "OK"
                 },
             };
             _context.Products.AddRange(products);
@@ -226,7 +239,19 @@ namespace Manufacturing.Infrastructure.Persistence
                 new ProductionOrder
                 {
                     OrderDate = DateTime.Parse("2021-02-01"),
-                    Quantity = 200, Deadline = DateTime.Parse("2021-02-15"),
+                    Quantity = 200, Deadline = DateTime.Parse("2021-02-15"), 
+                    EmployeeId = employees.Single(e => e.LastName == "Иванов").EmployeeId
+                },
+                new ProductionOrder
+                {
+                    OrderDate = DateTime.Parse("2021-03-01")
+                    , Quantity = 150, Deadline = DateTime.Parse("2021-03-15"),
+                    EmployeeId = employees.Single(e => e.LastName == "Иванов").EmployeeId
+                },
+                new ProductionOrder
+                {
+                    OrderDate = DateTime.Parse("2021-04-01"),
+                    Quantity = 250, Deadline = DateTime.Parse("2021-04-15"),
                     EmployeeId = employees.Single(e => e.LastName == "Иванов").EmployeeId
                 },
             };
@@ -263,15 +288,35 @@ namespace Manufacturing.Infrastructure.Persistence
             {
                 new QualityControl
                 {
-                    ControlDate = DateTime.Parse("2021-01-15"),
-                    Result = "OK", EmployeeId = employees.Single(e => e.LastName == "Сергеев").EmployeeId,
+                    ControlDate = DateTime.Parse("2021-01-15"), 
+                    Result = "OK", 
+                    Comment = "Все параметры соответствуют стандартам", 
+                    EmployeeId = employees.Single(e => e.LastName == "Сергеев").EmployeeId, 
                     ProductId = products.Single(pr => pr.Name == "Пожарный рукав 1,5\"").ProductId
                 },
                 new QualityControl
                 {
                     ControlDate = DateTime.Parse("2021-02-15"),
-                    Result = "OK", EmployeeId = employees.Single(e => e.LastName == "Сергеев").EmployeeId,
+                    Result = "OK", 
+                    Comment = "Все параметры соответствуют стандартам", 
+                    EmployeeId = employees.Single(e => e.LastName == "Сергеев").EmployeeId, 
                     ProductId = products.Single(pr => pr.Name == "Пожарный рукав 2\"").ProductId
+                },
+                new QualityControl
+                {
+                    ControlDate = DateTime.Parse("2021-03-15"),
+                    Result = "OK",
+                    Comment = "Все параметры соответствуют стандартам",
+                    EmployeeId = employees.Single(e => e.LastName == "Сергеев").EmployeeId, 
+                    ProductId = products.Single(pr => pr.Name == "Пожарный рукав 3\"").ProductId
+                },
+                new QualityControl
+                {
+                    ControlDate = DateTime.Parse("2021-04-15"),
+                    Result = "OK", 
+                    Comment = "Все параметры соответствуют стандартам", 
+                    EmployeeId = employees.Single(e => e.LastName == "Сергеев").EmployeeId, 
+                    ProductId = products.Single(pr => pr.Name == "Пожарный рукав 4\"").ProductId
                 },
             };
             _context.QualityControls.AddRange(qualityControls);

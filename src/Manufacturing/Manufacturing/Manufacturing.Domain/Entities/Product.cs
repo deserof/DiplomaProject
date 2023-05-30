@@ -14,5 +14,6 @@ namespace Manufacturing.Domain.Entities
 
         public virtual ICollection<ProcessExecution> ProcessExecutions { get; set; }
         public virtual ICollection<QualityControl> QualityControls { get; set; }
+        public virtual ICollection<ProductFile> ProductFiles { get; set; }
     }
 }

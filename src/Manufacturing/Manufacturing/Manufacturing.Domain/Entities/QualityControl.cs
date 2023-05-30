@@ -10,6 +10,7 @@ namespace Manufacturing.Domain.Entities
         public int ControlId { get; set; }
         public DateTime ControlDate { get; set; }
         public string Result { get; set; }
+        public string Comment { get; set; }
 
         [ForeignKey("Employee")]
         public int EmployeeId { get; set; }
