@@ -22,5 +22,7 @@ namespace Manufacturing.Application.Common.Interfaces
         DbSet<QualityControl> QualityControls { get; }
 
         Task<int> SaveChangesAsync(CancellationToken cancellationToken);
+
+        DbSet<TEntity> Set<TEntity>() where TEntity : class;
     }
 }
