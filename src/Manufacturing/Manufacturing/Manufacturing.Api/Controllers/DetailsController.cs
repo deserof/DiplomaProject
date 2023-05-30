@@ -4,6 +4,7 @@ using Manufacturing.Application.Details.Commands.DeleteDetail;
 using Manufacturing.Application.Details.Commands.UpdateDetail;
 using Manufacturing.Application.Details.Queries.GetDetail;
 using Manufacturing.Application.Details.Queries.GetDetailsWithPagination;
+using Manufacturing.Application.Details.Queries.ViewModels;
 using Manufacturing.Infrastructure.Identity;
 using MediatR;
 using Microsoft.AspNetCore.Identity;

@@ -1,7 +1,7 @@
 ﻿using Manufacturing.Application.Common.Mappings;
 using Manufacturing.Domain.Entities;
 
-namespace Manufacturing.Application.Details.Queries.GetDetailsWithPagination
+namespace Manufacturing.Application.Details.Queries.ViewModels
 {
     public class DetailDto : IMapFrom<Detail>
     {

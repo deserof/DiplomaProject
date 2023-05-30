@@ -3,6 +3,7 @@ using AutoMapper.QueryableExtensions;
 using Manufacturing.Application.Common.Interfaces;
 using Manufacturing.Application.Common.Mappings;
 using Manufacturing.Application.Common.Models;
+using Manufacturing.Application.Details.Queries.ViewModels;
 using MediatR;
 
 namespace Manufacturing.Application.Details.Queries.GetDetailsWithPagination

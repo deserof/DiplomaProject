@@ -1,6 +1,6 @@
 ﻿using Manufacturing.Application.Common.Models;
 using Manufacturing.Application.Products.Commands.CreateProduct;
-using Manufacturing.Application.Products.Queries;
+using Manufacturing.Application.Products.Queries.GetProductsWithPagination;
 using Manufacturing.Application.Products.Queries.ViewModels;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;

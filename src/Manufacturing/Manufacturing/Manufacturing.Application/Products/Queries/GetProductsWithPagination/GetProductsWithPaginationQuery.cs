@@ -4,7 +4,7 @@ using Manufacturing.Application.Products.Queries.ViewModels;
 using Manufacturing.Domain.Entities;
 using MediatR;
 
-namespace Manufacturing.Application.Products.Queries
+namespace Manufacturing.Application.Products.Queries.GetProductsWithPagination
 {
     public record GetProductsWithPaginationQuery : IRequest<PaginatedList<ProductDto>>
     {

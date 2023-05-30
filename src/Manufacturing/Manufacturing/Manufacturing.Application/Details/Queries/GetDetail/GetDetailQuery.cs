@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
 using Manufacturing.Application.Common.Interfaces;
-using Manufacturing.Application.Details.Queries.GetDetailsWithPagination;
+using Manufacturing.Application.Details.Queries.ViewModels;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 
