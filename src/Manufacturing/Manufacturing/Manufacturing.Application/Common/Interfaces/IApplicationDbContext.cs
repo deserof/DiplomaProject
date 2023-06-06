@@ -11,8 +11,6 @@ namespace Manufacturing.Application.Common.Interfaces
 
         DbSet<Product> Products { get; }
 
-        DbSet<ProductionLine> ProductionLines { get; }
-
         DbSet<ProductionOrder> ProductionOrders { get; }
 
         DbSet<ProcessExecution> ProcessExecutions { get; }

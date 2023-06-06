@@ -20,8 +20,6 @@ namespace Manufacturing.Domain.Entities
         public int ProductId { get; set; }
         public virtual Product Product { get; set; }
 
-        [ForeignKey("ProductionLine")]
-        public int LineId { get; set; }
-        public virtual ProductionLine ProductionLine { get; set; }
+        public virtual ICollection<ProductFile> ProductFiles { get; set; }
     }
 }

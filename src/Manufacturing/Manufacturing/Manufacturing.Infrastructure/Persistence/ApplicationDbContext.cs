@@ -27,7 +27,6 @@ namespace Manufacturing.Infrastructure.Persistence
         public DbSet<Employee> Employees => Set<Employee>();
         public DbSet<ProductionProcess> ProductionProcesses => Set<ProductionProcess>();
         public DbSet<Product> Products => Set<Product>();
-        public DbSet<ProductionLine> ProductionLines => Set<ProductionLine>();
         public DbSet<ProductionOrder> ProductionOrders => Set<ProductionOrder>();
         public DbSet<ProcessExecution> ProcessExecutions => Set<ProcessExecution>();
         public DbSet<QualityControl> QualityControls => Set<QualityControl>();

@@ -19,6 +19,9 @@ import { Product } from '../../common/types';
 import { getProducts, addProduct, updateProduct, deleteProduct } from '../../common/apiService';
 import AddProductDialog from '../Dialogs/AddProductDialod';
 import EditProductDialog from '../Dialogs/EditProductDialog';
+import { useNavigate } from 'react-router-dom';
+import { TextField } from '@mui/material';
+import MainMenu from '../Menu/MainMenu';
 
 const Products: React.FC = () => {
   const [totalCount, setTotalCount] = useState(0);
@@ -28,6 +31,8 @@ const Products: React.FC = () => {
   const [addDialogOpen, setAddDialogOpen] = useState(false);
   const [editDialogOpen, setEditDialogOpen] = useState(false);
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
+  const [search, setSearch] = useState<string>('');
+  const navigate = useNavigate();
 
   useEffect(() => {
     console.log('Текущая страница:', pageNumber);
@@ -64,8 +69,13 @@ const Products: React.FC = () => {
     fetchProducts();
   };
 
+  const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setSearch(event.target.value);
+  };
+
   return (
     <Container>
+        <MainMenu />
       <Typography variant="h4" component="h1">
         Список продуктов
       </Typography>
@@ -92,41 +102,68 @@ const Products: React.FC = () => {
              />
         </TableContainer>
 
+        <TextField
+  label="Поиск"
+  value={search}
+  onChange={handleSearchChange}
+  variant="outlined"
+  size="small"
+  InputProps={{
+    style: {
+      borderRadius: '5px',
+    },
+  }}
+  style={{ marginBottom: '1rem', width: '100%' }}
+/>
+
       </Box>
       <TableContainer component={Paper} sx={{ marginTop: 2 }}>
         <Table>
+
           <TableHead>
             <TableRow>
               <TableCell>Название</TableCell>
               <TableCell>Описание</TableCell>
               <TableCell>Статус качества</TableCell>
-              <TableCell>Действия</TableCell>
+              <TableCell>Дата добавления</TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
-            {products.map((product) => (
-              <TableRow key={product.id}>
-                <TableCell>{product.name}</TableCell>
-                <TableCell>{product.description}</TableCell>
-                <TableCell>{product.qualityStatus}</TableCell>
-                <TableCell>
-                  <IconButton
-                    onClick={() => {
-                      setSelectedProduct(product);
-                      setEditDialogOpen(true);
-                    }}
-                  >
-                    <Edit />
-                  </IconButton>
-                  <IconButton
-                    onClick={() => handleDeleteProduct(product.id)}
-                  >
-                    <Delete />
-                  </IconButton>
-                </TableCell>
-              </TableRow>
-            ))}
-          </TableBody>
+  {Array.isArray(products) &&
+    products
+      .filter((product) =>
+        product.name.toLowerCase().includes(search.toLowerCase())
+      )
+      .map((product) => (
+        <TableRow key={product.id}>
+          <TableCell>{product.name}</TableCell>
+          <TableCell>{product.description}</TableCell>
+          <TableCell>{product.qualityStatus}</TableCell>
+          <TableCell>{product.creationDate}</TableCell>
+          <TableCell style={{ whiteSpace: 'nowrap' }}>
+            <IconButton
+              onClick={() => {
+                setSelectedProduct(product);
+                setEditDialogOpen(true);
+              }}
+            >
+              <Edit />
+            </IconButton>
+            <IconButton
+              onClick={() => handleDeleteProduct(product.id)}
+            >
+              <Delete />
+            </IconButton>
+            <Button
+              variant="outlined"
+              onClick={() => navigate(`/processes/${product.id}`)}
+            >
+              Процессы
+            </Button>
+          </TableCell>
+        </TableRow>
+      ))}
+</TableBody>
         </Table>
       </TableContainer>
       <AddProductDialog

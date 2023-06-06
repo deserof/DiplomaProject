@@ -159,39 +159,6 @@ namespace Manufacturing.Infrastructure.Persistence
             _context.ProductionProcesses.AddRange(processes);
             await _context.SaveChangesAsync();
 
-            // Добавление линий производства
-            var lines = new ProductionLine[]
-            {
-                new ProductionLine
-                {
-                    Name = "Линия подготовки сырья",
-                    Capacity = 100
-                },
-                new ProductionLine
-                {
-                    Name = "Линия изготовления основных элементов рукава",
-                    Capacity = 80
-                },
-                new ProductionLine
-                {
-                    Name = "Линия сборки рукава",
-                    Capacity = 50
-                },
-                new ProductionLine
-                {
-                    Name = "Линия технического контроля и испытаний",
-                    Capacity = 40
-                },
-
-                new ProductionLine
-                {
-                    Name = "Линия упаковки и хранения",
-                    Capacity = 100
-                },
-            };
-            _context.ProductionLines.AddRange(lines);
-            await _context.SaveChangesAsync();
-
             // Добавление продукции
             var products = new Product[]
             {
@@ -268,7 +235,6 @@ namespace Manufacturing.Infrastructure.Persistence
                     EmployeeId = employees.Single(e => e.LastName == "Петров").Id,
                     ProcessId = processes.Single(p => p.Name == "Проверка качества сырья").Id,
                     ProductId = products.Single(pr => pr.Name == "Пожарный рукав 1,5\"").Id,
-                    LineId = lines.Single(l => l.Name == "Линия подготовки сырья").Id
                 },
                 new ProcessExecution
                 {
@@ -276,8 +242,7 @@ namespace Manufacturing.Infrastructure.Persistence
                     EndTime = DateTime.Parse("2021-02-01 09:00"),
                     EmployeeId = employees.Single(e => e.LastName == "Петров").Id,
                     ProcessId = processes.Single(p => p.Name == "Проверка качества сырья").Id,
-                    ProductId = products.Single(pr => pr.Name == "Пожарный рукав 2\"").Id,
-                    LineId = lines.Single(l => l.Name == "Линия подготовки сырья").Id
+                    ProductId = products.Single(pr => pr.Name == "Пожарный рукав 1,5\"").Id,
                 },
             };
             _context.ProcessExecutions.AddRange(processExecutions);
