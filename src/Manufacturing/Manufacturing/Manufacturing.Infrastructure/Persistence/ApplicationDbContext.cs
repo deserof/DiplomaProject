@@ -24,8 +24,6 @@ namespace Manufacturing.Infrastructure.Persistence
             _auditableEntitySaveChangesInterceptor = auditableEntitySaveChangesInterceptor;
             _mediator = mediator;
         }
-
-        public DbSet<Detail> Details => Set<Detail>();
         public DbSet<Employee> Employees => Set<Employee>();
         public DbSet<ProductionProcess> ProductionProcesses => Set<ProductionProcess>();
         public DbSet<Product> Products => Set<Product>();

@@ -234,25 +234,25 @@ namespace Manufacturing.Infrastructure.Persistence
                 {
                     OrderDate = DateTime.Parse("2021-01-01"),
                     Quantity = 100, Deadline = DateTime.Parse("2021-01-15"),
-                    EmployeeId = employees.Single(e => e.LastName == "Иванов").EmployeeId
+                    EmployeeId = employees.Single(e => e.LastName == "Иванов").Id
                 },
                 new ProductionOrder
                 {
                     OrderDate = DateTime.Parse("2021-02-01"),
                     Quantity = 200, Deadline = DateTime.Parse("2021-02-15"),
-                    EmployeeId = employees.Single(e => e.LastName == "Иванов").EmployeeId
+                    EmployeeId = employees.Single(e => e.LastName == "Иванов").Id
                 },
                 new ProductionOrder
                 {
                     OrderDate = DateTime.Parse("2021-03-01")
                     , Quantity = 150, Deadline = DateTime.Parse("2021-03-15"),
-                    EmployeeId = employees.Single(e => e.LastName == "Иванов").EmployeeId
+                    EmployeeId = employees.Single(e => e.LastName == "Иванов").Id
                 },
                 new ProductionOrder
                 {
                     OrderDate = DateTime.Parse("2021-04-01"),
                     Quantity = 250, Deadline = DateTime.Parse("2021-04-15"),
-                    EmployeeId = employees.Single(e => e.LastName == "Иванов").EmployeeId
+                    EmployeeId = employees.Single(e => e.LastName == "Иванов").Id
                 },
             };
             _context.ProductionOrders.AddRange(orders);
@@ -265,19 +265,19 @@ namespace Manufacturing.Infrastructure.Persistence
                 {
                     StartTime = DateTime.Parse("2021-01-01 08:00"),
                     EndTime = DateTime.Parse("2021-01-01 09:00"),
-                    EmployeeId = employees.Single(e => e.LastName == "Петров").EmployeeId,
-                    ProcessId = processes.Single(p => p.Name == "Проверка качества сырья").ProcessId,
-                    ProductId = products.Single(pr => pr.Name == "Пожарный рукав 1,5\"").ProductId,
-                    LineId = lines.Single(l => l.Name == "Линия подготовки сырья").LineId
+                    EmployeeId = employees.Single(e => e.LastName == "Петров").Id,
+                    ProcessId = processes.Single(p => p.Name == "Проверка качества сырья").Id,
+                    ProductId = products.Single(pr => pr.Name == "Пожарный рукав 1,5\"").Id,
+                    LineId = lines.Single(l => l.Name == "Линия подготовки сырья").Id
                 },
                 new ProcessExecution
                 {
                     StartTime = DateTime.Parse("2021-02-01 08:00"),
                     EndTime = DateTime.Parse("2021-02-01 09:00"),
-                    EmployeeId = employees.Single(e => e.LastName == "Петров").EmployeeId,
-                    ProcessId = processes.Single(p => p.Name == "Проверка качества сырья").ProcessId,
-                    ProductId = products.Single(pr => pr.Name == "Пожарный рукав 2\"").ProductId,
-                    LineId = lines.Single(l => l.Name == "Линия подготовки сырья").LineId
+                    EmployeeId = employees.Single(e => e.LastName == "Петров").Id,
+                    ProcessId = processes.Single(p => p.Name == "Проверка качества сырья").Id,
+                    ProductId = products.Single(pr => pr.Name == "Пожарный рукав 2\"").Id,
+                    LineId = lines.Single(l => l.Name == "Линия подготовки сырья").Id
                 },
             };
             _context.ProcessExecutions.AddRange(processExecutions);
@@ -291,32 +291,32 @@ namespace Manufacturing.Infrastructure.Persistence
                     ControlDate = DateTime.Parse("2021-01-15"),
                     Result = "OK",
                     Comment = "Все параметры соответствуют стандартам",
-                    EmployeeId = employees.Single(e => e.LastName == "Сергеев").EmployeeId,
-                    ProductId = products.Single(pr => pr.Name == "Пожарный рукав 1,5\"").ProductId
+                    EmployeeId = employees.Single(e => e.LastName == "Сергеев").Id,
+                    ProductId = products.Single(pr => pr.Name == "Пожарный рукав 1,5\"").Id
                 },
                 new QualityControl
                 {
                     ControlDate = DateTime.Parse("2021-02-15"),
                     Result = "OK",
                     Comment = "Все параметры соответствуют стандартам",
-                    EmployeeId = employees.Single(e => e.LastName == "Сергеев").EmployeeId,
-                    ProductId = products.Single(pr => pr.Name == "Пожарный рукав 2\"").ProductId
+                    EmployeeId = employees.Single(e => e.LastName == "Сергеев").Id,
+                    ProductId = products.Single(pr => pr.Name == "Пожарный рукав 2\"").Id
                 },
                 new QualityControl
                 {
                     ControlDate = DateTime.Parse("2021-03-15"),
                     Result = "OK",
                     Comment = "Все параметры соответствуют стандартам",
-                    EmployeeId = employees.Single(e => e.LastName == "Сергеев").EmployeeId,
-                    ProductId = products.Single(pr => pr.Name == "Пожарный рукав 3\"").ProductId
+                    EmployeeId = employees.Single(e => e.LastName == "Сергеев").Id,
+                    ProductId = products.Single(pr => pr.Name == "Пожарный рукав 3\"").Id
                 },
                 new QualityControl
                 {
                     ControlDate = DateTime.Parse("2021-04-15"),
                     Result = "OK",
                     Comment = "Все параметры соответствуют стандартам",
-                    EmployeeId = employees.Single(e => e.LastName == "Сергеев").EmployeeId,
-                    ProductId = products.Single(pr => pr.Name == "Пожарный рукав 4\"").ProductId
+                    EmployeeId = employees.Single(e => e.LastName == "Сергеев").Id,
+                    ProductId = products.Single(pr => pr.Name == "Пожарный рукав 4\"").Id
                 },
             };
             _context.QualityControls.AddRange(qualityControls);

@@ -1,14 +1,16 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
-import Details from './components/Details/Details';
+import LoginForm from './components/Auth/LoginForm';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import Products from './components/Products/Products';
 
 const App: React.FC = () => {
   return (
-    <div>
-      <h1>Diploma Project</h1>
-      <Details />
-    </div>
+    <Router>
+      <Routes>
+        <Route path="/" element ={<LoginForm />} />
+        <Route path="/products" element={<Products />} />
+      </Routes>
+    </Router>
   );
 };
 

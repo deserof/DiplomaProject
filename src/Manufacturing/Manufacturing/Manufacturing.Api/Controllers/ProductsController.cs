@@ -1,5 +1,7 @@
 ﻿using Manufacturing.Application.Common.Models;
 using Manufacturing.Application.Products.Commands.CreateProduct;
+using Manufacturing.Application.Products.Commands.DeleteProduct;
+using Manufacturing.Application.Products.Commands.UpdateProduct;
 using Manufacturing.Application.Products.Queries.GetProductsWithPagination;
 using Manufacturing.Application.Products.Queries.ViewModels;
 using MediatR;
@@ -10,11 +12,11 @@ namespace Manufacturing.Api.Controllers
     // [Authorize(AuthenticationSchemes = OpenIddictValidationAspNetCoreDefaults.AuthenticationScheme)]
     [Route("api/[controller]")]
     [ApiController]
-    public class ProductController : ControllerBase
+    public class ProductsController : ControllerBase
     {
         private readonly IMediator _mediator;
 
-        public ProductController(IMediator mediator)
+        public ProductsController(IMediator mediator)
         {
             _mediator = mediator;
         }
@@ -38,22 +40,23 @@ namespace Manufacturing.Api.Controllers
             return await _mediator.Send(command);
         }
 
-        //[HttpPut("{id}")]
-        //public async Task<IActionResult> UpdateProduct(int id, UpdateProductCommand command)
-        //{
-        //    if (id != command.Id)
-        //    {
-        //        return BadRequest();
-        //    }
-        //    var product = await _mediator.Send(command);
-        //    return Ok(product);
-        //}
+        [HttpPut("{id}")]
+        public async Task<IActionResult> UpdateProduct(int id, UpdateProductCommand command)
+        {
+            if (id != command.Id)
+            {
+                return BadRequest();
+            }
 
-        //[HttpDelete("{id}")]
-        //public async Task<IActionResult> DeleteProduct(int id)
-        //{
-        //    var product = await _mediator.Send(new DeleteProductCommand(id));
-        //    return Ok(product);
-        //}
+            await _mediator.Send(command);
+            return Ok();
+        }
+
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> DeleteProduct(int id)
+        {
+            await _mediator.Send(new DeleteProductCommand(id));
+            return NoContent();
+        }
     }
 }

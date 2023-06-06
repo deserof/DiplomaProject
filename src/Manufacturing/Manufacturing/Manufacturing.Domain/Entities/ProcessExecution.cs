@@ -1,13 +1,10 @@
 ﻿using Manufacturing.Domain.Common;
-using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Manufacturing.Domain.Entities
 {
     public class ProcessExecution : BaseAuditableEntity
     {
-        [Key]
-        public int ExecutionId { get; set; }
         public DateTime StartTime { get; set; }
         public DateTime EndTime { get; set; }
 

@@ -5,8 +5,6 @@ namespace Manufacturing.Application.Common.Interfaces
 {
     public interface IApplicationDbContext
     {
-        DbSet<Detail> Details { get; }
-
         DbSet<Employee> Employees { get; }
 
         DbSet<ProductionProcess> ProductionProcesses { get; }

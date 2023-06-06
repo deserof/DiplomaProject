@@ -1,13 +1,10 @@
 ﻿using Manufacturing.Domain.Common;
-using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Manufacturing.Domain.Entities
 {
     public class QualityControl : BaseAuditableEntity
     {
-        [Key]
-        public int ControlId { get; set; }
         public DateTime ControlDate { get; set; }
         public string Result { get; set; }
         public string Comment { get; set; }
