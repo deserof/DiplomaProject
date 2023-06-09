@@ -22,15 +22,15 @@ const LoginForm: React.FC = () => {
     e.preventDefault();
 
     try {
-        const response = await axios.post(`${BASE_URL}/connect/token`, new URLSearchParams({
-          grant_type: 'password',
-          username,
-          password,
-        }), {
-          headers: {
-            'Content-Type': 'application/x-www-form-urlencoded',
-          },
-        });
+      const response = await axios.post(`${BASE_URL}/connect/token`, new URLSearchParams({
+        grant_type: 'password',
+        username,
+        password,
+      }), {
+        headers: {
+          'Content-Type': 'application/x-www-form-urlencoded',
+        },
+      });
 
       localStorage.setItem('access_token', response.data.access_token);
       localStorage.setItem('id_token', response.data.id_token);

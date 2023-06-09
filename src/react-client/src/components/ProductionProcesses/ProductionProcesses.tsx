@@ -12,28 +12,27 @@ const ProductionProcesses: React.FC = () => {
   const [totalCount, setTotalCount] = useState(0);
   const [pageNumber, setPage] = useState(0);
   const [pageSize, setPageSize] = useState(10);
-  const [products, setProducts] = useState<ProductionProcess[]>([]);
+  const [productionProcesses, setProductionProcesses] = useState<ProductionProcess[]>([]);
   const [addDialogOpen, setAddDialogOpen] = useState(false);
   const [editDialogOpen, setEditDialogOpen] = useState(false);
   const [selectedProductionProcess, setSelectedProductionProcess] = useState<ProductionProcess | null>(null);
-  const [search, setSearch] = useState<string>('');
   const navigate = useNavigate();
 
   useEffect(() => {
     console.log('Текущая страница:', pageNumber);
   }, [pageNumber]);
-  
+
   useEffect(() => {
     fetchProductionProcesses();
   }, [pageNumber]);
-  
+
   useEffect(() => {
     fetchProductionProcesses();
   }, []);
 
   const fetchProductionProcesses = async () => {
     const data = await getProductionProcesses(pageNumber + 1, pageSize);
-    setProducts(data.items);
+    setProductionProcesses(data.items);
     setTotalCount(data.totalCount);
   };
 
@@ -54,13 +53,9 @@ const ProductionProcesses: React.FC = () => {
     fetchProductionProcesses();
   };
 
-  const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setSearch(event.target.value);
-  };
-
-    return (
-<Container>
-        <MainMenu />
+  return (
+    <Container>
+      <MainMenu />
       <Typography variant="h4" component="h1">
         Производственные процессы
       </Typography>
@@ -74,17 +69,17 @@ const ProductionProcesses: React.FC = () => {
         </Button>
 
         <TableContainer component={Paper} sx={{ marginTop: 2 }}>
-            <TablePagination
-             component="div"
+          <TablePagination
+            component="div"
             count={totalCount}
             page={pageNumber}
             onPageChange={(event, newPage) => setPage(newPage)}
             rowsPerPage={pageSize}
             onRowsPerPageChange={(event) => {
-             setPageSize(parseInt(event.target.value, 10));
-            setPage(0);
-             }}
-             />
+              setPageSize(parseInt(event.target.value, 10));
+              setPage(0);
+            }}
+          />
         </TableContainer>
 
       </Box>
@@ -98,33 +93,28 @@ const ProductionProcesses: React.FC = () => {
             </TableRow>
           </TableHead>
           <TableBody>
-  {Array.isArray(products) &&
-    products
-      .filter((productionProcess) =>
-        productionProcess.name.toLowerCase().includes(search.toLowerCase())
-      )
-      .map((productionProcess) => (
-        <TableRow key={productionProcess.id}>
-          <TableCell>{productionProcess.name}</TableCell>
-          <TableCell>{productionProcess.description}</TableCell>
-          <TableCell style={{ whiteSpace: 'nowrap' }}>
-            <IconButton
-              onClick={() => {
-                setSelectedProductionProcess(productionProcess);
-                setEditDialogOpen(true);
-              }}
-            >
-              <Edit />
-            </IconButton>
-            <IconButton
-              onClick={() => handleDeleteProductionProcess(productionProcess.id)}
-            >
-              <Delete />
-            </IconButton>
-          </TableCell>
-        </TableRow>
-      ))}
-</TableBody>
+            {productionProcesses.map((productionProcess) => (
+              <TableRow key={productionProcess.id}>
+                <TableCell>{productionProcess.name}</TableCell>
+                <TableCell>{productionProcess.description}</TableCell>
+                <TableCell style={{ whiteSpace: 'nowrap' }}>
+                  <IconButton
+                    onClick={() => {
+                      setSelectedProductionProcess(productionProcess);
+                      setEditDialogOpen(true);
+                    }}
+                  >
+                    <Edit />
+                  </IconButton>
+                  <IconButton
+                    onClick={() => handleDeleteProductionProcess(productionProcess.id)}
+                  >
+                    <Delete />
+                  </IconButton>
+                </TableCell>
+              </TableRow>
+            ))}
+          </TableBody>
         </Table>
       </TableContainer>
       <AddProductionProcessDialog
@@ -139,7 +129,7 @@ const ProductionProcesses: React.FC = () => {
         productionProcess={selectedProductionProcess}
       />
     </Container>
-    );        
+  );
 }
 
 export default ProductionProcesses;

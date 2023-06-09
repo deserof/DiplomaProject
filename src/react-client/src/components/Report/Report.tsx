@@ -5,12 +5,12 @@ import { Container, Typography } from '@mui/material';
 const Report: React.FC = () => {
     return (
         <Container>
-                <MainMenu />
-                  <Typography variant="h4" gutterBottom>
-                    Отчет
-                  </Typography>
+            <MainMenu />
+            <Typography variant="h4" gutterBottom>
+                Отчет
+            </Typography>
         </Container>
-    );        
+    );
 }
 
 export default Report;

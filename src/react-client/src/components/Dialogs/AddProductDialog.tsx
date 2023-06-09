@@ -27,11 +27,11 @@ const AddProductDialog: React.FC<AddProductDialogProps> = ({
 
   const handleSubmit = () => {
     const newProduct: Product = {
-        name,
-        description,
-        qualityStatus,
-        creationDate: new Date().toISOString(),
-        id: 0
+      name,
+      description,
+      qualityStatus,
+      creationDate: new Date().toISOString(),
+      id: 0
     };
 
     onSubmit(newProduct);
@@ -39,7 +39,7 @@ const AddProductDialog: React.FC<AddProductDialogProps> = ({
     setName('');
     setDescription('');
     setQualityStatus('');
-}
+  }
 
   return (
     <Dialog open={open} onClose={onClose}>

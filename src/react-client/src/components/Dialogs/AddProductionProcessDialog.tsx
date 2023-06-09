@@ -25,16 +25,16 @@ const AddProductionProcessDialog: React.FC<AddProductionProcessDialogProps> = ({
 
   const handleSubmit = () => {
     const newProductionProcess: ProductionProcess = {
-        name,
-        description,
-        id: 0
+      name,
+      description,
+      id: 0
     };
 
     onSubmit(newProductionProcess);
 
     setName('');
     setDescription('');
-}
+  }
 
   return (
     <Dialog open={open} onClose={onClose}>

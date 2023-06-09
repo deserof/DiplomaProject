@@ -233,6 +233,7 @@ namespace Manufacturing.Infrastructure.Persistence
                     StartTime = DateTime.Parse("2021-01-01 08:00"),
                     EndTime = DateTime.Parse("2021-01-01 09:00"),
                     EmployeeId = employees.Single(e => e.LastName == "Петров").Id,
+                    Description = "Замена сальника",
                     ProcessId = processes.Single(p => p.Name == "Обслуживание и поддержка").Id,
                     ProductId = products.Single(pr => pr.Name == "Теплообменник типа A").Id,
                 },
@@ -240,6 +241,7 @@ namespace Manufacturing.Infrastructure.Persistence
                 {
                     StartTime = DateTime.Parse("2021-02-01 08:00"),
                     EndTime = DateTime.Parse("2021-02-01 09:00"),
+                    Description = "Сборка крышки",
                     EmployeeId = employees.Single(e => e.LastName == "Петров").Id,
                     ProcessId = processes.Single(p => p.Name == "Сборка").Id,
                     ProductId = products.Single(pr => pr.Name == "Теплообменник типа A").Id,

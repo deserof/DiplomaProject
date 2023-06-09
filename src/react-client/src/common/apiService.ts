@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { BASE_URL } from './constants';
-import { Product, ProductionProcess, ProductionProcessesResponse, ProductsResponse, UsersResponse } from './types';
+import { ProcessesResponse, Product, ProductionProcess, ProductionProcessesResponse, ProductsResponse, UsersResponse } from './types';
 
 function getAccessToken() {
   return localStorage.getItem('access_token');
@@ -29,27 +29,32 @@ api.interceptors.request.use(
 // Products
 
 export const getProducts = async (pageNumber: number, pageSize: number): Promise<ProductsResponse> => {
-    try {
-      const response = await api.get('/api/Products', {
-        params: {
-          pageNumber,
-          pageSize,
-        },
-      });
-  
-      return response.data;
-    } catch (error) {
-      console.error('Ошибка при получении продуктов:', error);
-      return {
-        items: [],
-        pageNumber: 0,
-        totalPages: 0,
-        totalCount: 0,
-        hasPreviousPage: false,
-        hasNextPage: false,
-      };
-    }
-  };
+  try {
+    const response = await api.get('/api/Products', {
+      params: {
+        pageNumber,
+        pageSize,
+      },
+    });
+
+    return response.data;
+  } catch (error) {
+    console.error('Ошибка при получении продуктов:', error);
+    return {
+      items: [],
+      pageNumber: 0,
+      totalPages: 0,
+      totalCount: 0,
+      hasPreviousPage: false,
+      hasNextPage: false,
+    };
+  }
+};
+
+export const getProduct = async (id: number): Promise<Product> => {
+  const response = await api.get(`/api/Products/${id}`);
+  return response.data;
+};
 
 export const addProduct = async (product: Product) => {
   const response = await api.post<Product>('/api/Products', product);
@@ -117,18 +122,67 @@ export const getProductionProcesses = async (pageNumber: number, pageSize: numbe
 };
 
 export const addProductionProcess = async (productionProcess: ProductionProcess) => {
-const response = await api.post<Product>('/api/ProductionProcesses', productionProcess);
-return response.data;
+  const response = await api.post<Product>('/api/ProductionProcesses', productionProcess);
+  return response.data;
 };
 
-export const updateProductionProcess= async (productionProcess: ProductionProcess) => {
-const response = await api.put<Product>(`/api/ProductionProcesses/${productionProcess.id}`, productionProcess);
-return response.data;
+export const updateProductionProcess = async (productionProcess: ProductionProcess) => {
+  const response = await api.put<Product>(`/api/ProductionProcesses/${productionProcess.id}`, productionProcess);
+  return response.data;
 };
 
 export const deleteProductionProcess = async (id: number) => {
-const response = await api.delete(`/api/ProductionProcesses/${id}`);
-return response.data;
+  const response = await api.delete(`/api/ProductionProcesses/${id}`);
+  return response.data;
 };
 
 // Processes
+
+export const getProcesses = async (productId: number, pageNumber: number, pageSize: number): Promise<ProcessesResponse> => {
+  try {
+    const response = await api.get('/api/Processes', {
+      params: {
+        productId,
+        pageNumber,
+        pageSize,
+      },
+    });
+
+    return response.data;
+  } catch (error) {
+    console.error('Ошибка при получении процессов изделия:', error);
+    return {
+      items: [],
+      pageNumber: 0,
+      totalPages: 0,
+      totalCount: 0,
+      hasPreviousPage: false,
+      hasNextPage: false,
+    };
+  }
+};
+
+export const uploadProcessPhoto = async (id: number, file: File) => {
+  const formData = new FormData();
+  formData.append('processPhoto', file);
+
+  const response = await api.put(`/api/Processes/${id}/photo`, formData, {
+    headers: {
+      'Content-Type': 'multipart/form-data',
+    },
+  });
+  return response.data;
+};
+
+export const uploadProcessFile = async (id: number, file: File) => {
+  const formData = new FormData();
+  formData.append('processFile', file);
+
+  const response = await api.put(`/api/Processes/${id}/file`, formData, {
+    headers: {
+      'Content-Type': 'multipart/form-data',
+    },
+  });
+  return response.data;
+};
+

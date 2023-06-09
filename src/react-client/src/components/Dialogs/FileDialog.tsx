@@ -7,19 +7,20 @@ import {
   DialogActions,
   Button,
 } from '@mui/material';
+import { uploadProcessFile } from '../../common/apiService';
 
 interface FileDialogProps {
   open: boolean;
   onClose: () => void;
-  onAdd: (file: File | null) => void;
+  onAdd: (file: File | null, processId: number) => void;
+  processId: number;
 }
 
-const FileDialog: React.FC<FileDialogProps> = ({ open, onClose, onAdd }) => {
-  const [selectedFile, setSelectedFile] = useState<File | null>(null);
+let selectedFile: File | null = null;
 
-  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setSelectedFile(e.target.files ? e.target.files[0] : null);
-  };
+const FileDialog: React.FC<FileDialogProps> = ({ open, onClose, onAdd, processId }) => {
+
+
 
   return (
     <Dialog open={open} onClose={onClose} aria-labelledby="file-dialog-title">
@@ -29,7 +30,10 @@ const FileDialog: React.FC<FileDialogProps> = ({ open, onClose, onAdd }) => {
           type="file"
           id="fileUpload"
           style={{ display: 'none' }}
-          onChange={handleFileChange}
+          onChange={(e) => {
+            selectedFile = e.target.files ? e.target.files[0] : null;
+          }}
+          accept=".dwg,.dxf,.cdw,.spw"
         />
         <label htmlFor="fileUpload">
           <Button variant="outlined" color="primary" component="span">
@@ -43,8 +47,14 @@ const FileDialog: React.FC<FileDialogProps> = ({ open, onClose, onAdd }) => {
         </Button>
         <Button
           onClick={() => {
-            onAdd(selectedFile);
-            onClose();
+            if (selectedFile) {
+              uploadProcessFile(processId, selectedFile).then(() => {
+                onAdd(selectedFile, processId);
+                onClose();
+              });
+            } else {
+              alert('Пожалуйста, выберите файл');
+            }
           }}
           color="primary"
         >

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import {
     Dialog,
     DialogTitle,
@@ -7,41 +7,42 @@ import {
     DialogActions,
     Button,
 } from '@mui/material';
-import { ProductionProcess } from '../../common/types';
+import { Process, ProductionProcess } from '../../common/types';
 
-interface EditProductionProcessDialogProps {
+interface AddProcessDialogProps {
     open: boolean;
     onClose: () => void;
-    onSubmit: (productionProcess: ProductionProcess) => void;
-    productionProcess: ProductionProcess | null;
+    onSubmit: (productionProcess: Process) => void;
 }
 
-const EditProductionProcessDialog: React.FC<EditProductionProcessDialogProps> = ({
+const AddProcessDialog: React.FC<AddProcessDialogProps> = ({
     open,
     onClose,
     onSubmit,
-    productionProcess: productionProcess,
 }) => {
     const [name, setName] = useState('');
     const [description, setDescription] = useState('');
-    const [qualityStatus, setQualityStatus] = useState('');
-
-    useEffect(() => {
-        if (productionProcess) {
-            setName(productionProcess.name);
-            setDescription(productionProcess.description);
-        }
-    }, [productionProcess]);
 
     const handleSubmit = () => {
-        if (productionProcess) {
-            onSubmit({ ...productionProcess, name, description });
-        }
-    };
+        const newProcess: Process = {
+            name,
+            description,
+            id: 0,
+            startTime: '',
+            endTime: '',
+            productionProcessId: 0,
+            productionProcessDescription: ''
+        };
+
+        onSubmit(newProcess);
+
+        setName('');
+        setDescription('');
+    }
 
     return (
         <Dialog open={open} onClose={onClose}>
-            <DialogTitle>Изменить производственный процесс</DialogTitle>
+            <DialogTitle>Добавить производственный процесс</DialogTitle>
             <DialogContent>
                 <TextField
                     autoFocus
@@ -61,10 +62,10 @@ const EditProductionProcessDialog: React.FC<EditProductionProcessDialogProps> = 
             </DialogContent>
             <DialogActions>
                 <Button onClick={onClose}>Отмена</Button>
-                <Button onClick={handleSubmit}>Сохранить</Button>
+                <Button onClick={handleSubmit}>Отправить</Button>
             </DialogActions>
         </Dialog>
     );
 };
 
-export default EditProductionProcessDialog;
+export default AddProcessDialog;

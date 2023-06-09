@@ -8,6 +8,8 @@ namespace Manufacturing.Domain.Entities
         public DateTime StartTime { get; set; }
         public DateTime EndTime { get; set; }
 
+        public string Description { get; set; }
+
         [ForeignKey("Employee")]
         public int EmployeeId { get; set; }
         public virtual Employee Employee { get; set; }

@@ -17,7 +17,7 @@ import { Add, Edit, Delete } from '@mui/icons-material';
 import { TablePagination } from '@mui/material';
 import { Product } from '../../common/types';
 import { getProducts, addProduct, updateProduct, deleteProduct } from '../../common/apiService';
-import AddProductDialog from '../Dialogs/AddProductDialod';
+import AddProductDialog from '../Dialogs/AddProductDialog';
 import EditProductDialog from '../Dialogs/EditProductDialog';
 import { useNavigate } from 'react-router-dom';
 import { TextField } from '@mui/material';
@@ -37,11 +37,11 @@ const Products: React.FC = () => {
   useEffect(() => {
     console.log('Текущая страница:', pageNumber);
   }, [pageNumber]);
-  
+
   useEffect(() => {
     fetchProducts();
   }, [pageNumber]);
-  
+
   useEffect(() => {
     fetchProducts();
   }, []);
@@ -75,7 +75,7 @@ const Products: React.FC = () => {
 
   return (
     <Container>
-        <MainMenu />
+      <MainMenu />
       <Typography variant="h4" component="h1">
         Список изделий
       </Typography>
@@ -89,32 +89,32 @@ const Products: React.FC = () => {
         </Button>
 
         <TableContainer component={Paper} sx={{ marginTop: 2 }}>
-            <TablePagination
-             component="div"
+          <TablePagination
+            component="div"
             count={totalCount}
             page={pageNumber}
             onPageChange={(event, newPage) => setPage(newPage)}
             rowsPerPage={pageSize}
             onRowsPerPageChange={(event) => {
-             setPageSize(parseInt(event.target.value, 10));
-            setPage(0);
-             }}
-             />
+              setPageSize(parseInt(event.target.value, 10));
+              setPage(0);
+            }}
+          />
         </TableContainer>
 
         <TextField
-  label="Поиск"
-  value={search}
-  onChange={handleSearchChange}
-  variant="outlined"
-  size="small"
-  InputProps={{
-    style: {
-      borderRadius: '5px',
-    },
-  }}
-  style={{ marginBottom: '1rem', width: '100%' }}
-/>
+          label="Поиск"
+          value={search}
+          onChange={handleSearchChange}
+          variant="outlined"
+          size="small"
+          InputProps={{
+            style: {
+              borderRadius: '5px',
+            },
+          }}
+          style={{ marginBottom: '1rem', width: '100%' }}
+        />
 
       </Box>
       <TableContainer component={Paper} sx={{ marginTop: 2 }}>
@@ -129,41 +129,41 @@ const Products: React.FC = () => {
             </TableRow>
           </TableHead>
           <TableBody>
-  {Array.isArray(products) &&
-    products
-      .filter((product) =>
-        product.name.toLowerCase().includes(search.toLowerCase())
-      )
-      .map((product) => (
-        <TableRow key={product.id}>
-          <TableCell>{product.name}</TableCell>
-          <TableCell>{product.description}</TableCell>
-          <TableCell>{product.qualityStatus}</TableCell>
-          <TableCell>{product.creationDate}</TableCell>
-          <TableCell style={{ whiteSpace: 'nowrap' }}>
-            <IconButton
-              onClick={() => {
-                setSelectedProduct(product);
-                setEditDialogOpen(true);
-              }}
-            >
-              <Edit />
-            </IconButton>
-            <IconButton
-              onClick={() => handleDeleteProduct(product.id)}
-            >
-              <Delete />
-            </IconButton>
-            <Button
-              variant="outlined"
-              onClick={() => navigate(`/processes/${product.id}`)}
-            >
-              Процессы
-            </Button>
-          </TableCell>
-        </TableRow>
-      ))}
-</TableBody>
+            {Array.isArray(products) &&
+              products
+                .filter((product) =>
+                  product.name.toLowerCase().includes(search.toLowerCase())
+                )
+                .map((product) => (
+                  <TableRow key={product.id}>
+                    <TableCell>{product.name}</TableCell>
+                    <TableCell>{product.description}</TableCell>
+                    <TableCell>{product.qualityStatus}</TableCell>
+                    <TableCell>{product.creationDate}</TableCell>
+                    <TableCell style={{ whiteSpace: 'nowrap' }}>
+                      <IconButton
+                        onClick={() => {
+                          setSelectedProduct(product);
+                          setEditDialogOpen(true);
+                        }}
+                      >
+                        <Edit />
+                      </IconButton>
+                      <IconButton
+                        onClick={() => handleDeleteProduct(product.id)}
+                      >
+                        <Delete />
+                      </IconButton>
+                      <Button
+                        variant="outlined"
+                        onClick={() => navigate(`/processes/${product.id}`)}
+                      >
+                        Процессы
+                      </Button>
+                    </TableCell>
+                  </TableRow>
+                ))}
+          </TableBody>
         </Table>
       </TableContainer>
       <AddProductDialog

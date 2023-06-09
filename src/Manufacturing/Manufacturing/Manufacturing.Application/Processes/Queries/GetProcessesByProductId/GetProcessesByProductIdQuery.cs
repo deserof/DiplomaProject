@@ -32,9 +32,10 @@ namespace Manufacturing.Application.Processes.Queries.GetProcessesByProductId
                 .Include(x => x.ProductionProcess)
                 .Select(x => new ProcessVm()
                 {
-                    ProcessExecutionId = x.Id,
+                    Id = x.Id,
                     Name = x.ProductionProcess.Name,
-                    Description = x.ProductionProcess.Description,
+                    ProductionProcessDescription = x.ProductionProcess.Description,
+                    Description = x.Description,
                     StartTime = x.StartTime,
                     EndTime = x.EndTime,
                     ProductionProcessId = x.ProductionProcess.Id,

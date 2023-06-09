@@ -2,6 +2,7 @@
 using Manufacturing.Application.Products.Commands.CreateProduct;
 using Manufacturing.Application.Products.Commands.DeleteProduct;
 using Manufacturing.Application.Products.Commands.UpdateProduct;
+using Manufacturing.Application.Products.Queries.GetProductById;
 using Manufacturing.Application.Products.Queries.GetProductsWithPagination;
 using Manufacturing.Application.Products.Queries.ViewModels;
 using MediatR;
@@ -29,12 +30,12 @@ namespace Manufacturing.Api.Controllers
             return await _mediator.Send(query);
         }
 
-        //[HttpGet("{id}")]
-        //public async Task<IActionResult> GetProduct(int id)
-        //{
-        //    var product = await _mediator.Send(new GetProductQuery(id));
-        //    return Ok(product);
-        //}
+        [HttpGet("{id}")]
+        public async Task<IActionResult> GetProduct(int id)
+        {
+            var product = await _mediator.Send(new GetProductQuery(id));
+            return Ok(product);
+        }
 
         [HttpPost]
         public async Task<ActionResult<int>> CreateProduct(CreateProductCommand command)
