@@ -6,13 +6,13 @@ using MediatR;
 
 namespace Manufacturing.Application.Products.Queries.GetProductsWithPagination
 {
-    public record GetProductsWithPaginationQuery : IRequest<PaginatedList<ProductDto>>
+    public record GetProductsWithPaginationQuery : IRequest<PaginatedList<ProductVm>>
     {
         public int PageNumber { get; init; } = 1;
         public int PageSize { get; init; } = 10;
     }
 
-    public class GetProductsQueryHandler : IRequestHandler<GetProductsWithPaginationQuery, PaginatedList<ProductDto>>
+    public class GetProductsQueryHandler : IRequestHandler<GetProductsWithPaginationQuery, PaginatedList<ProductVm>>
     {
         private readonly IGenericRepository<Product> _repository;
 
@@ -21,9 +21,9 @@ namespace Manufacturing.Application.Products.Queries.GetProductsWithPagination
             _repository = repository;
         }
 
-        public async Task<PaginatedList<ProductDto>> Handle(GetProductsWithPaginationQuery request, CancellationToken cancellationToken)
+        public async Task<PaginatedList<ProductVm>> Handle(GetProductsWithPaginationQuery request, CancellationToken cancellationToken)
         {
-            return await _repository.GetAsync<Product, ProductDto>(request.PageNumber, request.PageSize, cancellationToken);
+            return await _repository.GetAsync<Product, ProductVm>(request.PageNumber, request.PageSize, cancellationToken);
         }
     }
 }

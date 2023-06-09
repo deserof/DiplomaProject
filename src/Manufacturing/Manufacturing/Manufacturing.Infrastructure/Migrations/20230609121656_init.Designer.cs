@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Manufacturing.Infrastructure.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20230605234806_initial")]
-    partial class initial
+    [Migration("20230609121656_init")]
+    partial class init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -87,10 +87,13 @@ namespace Manufacturing.Infrastructure.Migrations
                     b.Property<string>("LastModifiedBy")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("LineId")
+                    b.Property<int?>("ProcessFileId")
                         .HasColumnType("int");
 
                     b.Property<int>("ProcessId")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("ProcessPhotoId")
                         .HasColumnType("int");
 
                     b.Property<int>("ProductId")
@@ -103,9 +106,11 @@ namespace Manufacturing.Infrastructure.Migrations
 
                     b.HasIndex("EmployeeId");
 
-                    b.HasIndex("LineId");
+                    b.HasIndex("ProcessFileId");
 
                     b.HasIndex("ProcessId");
+
+                    b.HasIndex("ProcessPhotoId");
 
                     b.HasIndex("ProductId");
 
@@ -180,45 +185,19 @@ namespace Manufacturing.Infrastructure.Migrations
                     b.Property<string>("LastModifiedBy")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int?>("ProcessExecutionId")
+                        .HasColumnType("int");
+
                     b.Property<int>("ProductId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
 
+                    b.HasIndex("ProcessExecutionId");
+
                     b.HasIndex("ProductId");
 
-                    b.ToTable("ProductFile");
-                });
-
-            modelBuilder.Entity("Manufacturing.Domain.Entities.ProductionLine", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
-
-                    b.Property<int>("Capacity")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime>("Created")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("CreatedBy")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime?>("LastModified")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("LastModifiedBy")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Name")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("ProductionLines");
+                    b.ToTable("ProductFiles");
                 });
 
             modelBuilder.Entity("Manufacturing.Domain.Entities.ProductionOrder", b =>
@@ -750,17 +729,21 @@ namespace Manufacturing.Infrastructure.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Manufacturing.Domain.Entities.ProductionLine", "ProductionLine")
-                        .WithMany("ProcessExecutions")
-                        .HasForeignKey("LineId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                    b.HasOne("Manufacturing.Domain.Entities.ProductFile", "ProcessFile")
+                        .WithMany()
+                        .HasForeignKey("ProcessFileId")
+                        .OnDelete(DeleteBehavior.Restrict);
 
                     b.HasOne("Manufacturing.Domain.Entities.ProductionProcess", "ProductionProcess")
                         .WithMany("ProcessExecutions")
                         .HasForeignKey("ProcessId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.HasOne("Manufacturing.Domain.Entities.ProductFile", "ProcessPhoto")
+                        .WithMany()
+                        .HasForeignKey("ProcessPhotoId")
+                        .OnDelete(DeleteBehavior.Restrict);
 
                     b.HasOne("Manufacturing.Domain.Entities.Product", "Product")
                         .WithMany("ProcessExecutions")
@@ -770,20 +753,28 @@ namespace Manufacturing.Infrastructure.Migrations
 
                     b.Navigation("Employee");
 
-                    b.Navigation("Product");
+                    b.Navigation("ProcessFile");
 
-                    b.Navigation("ProductionLine");
+                    b.Navigation("ProcessPhoto");
+
+                    b.Navigation("Product");
 
                     b.Navigation("ProductionProcess");
                 });
 
             modelBuilder.Entity("Manufacturing.Domain.Entities.ProductFile", b =>
                 {
+                    b.HasOne("Manufacturing.Domain.Entities.ProcessExecution", "ProcessExecution")
+                        .WithMany()
+                        .HasForeignKey("ProcessExecutionId");
+
                     b.HasOne("Manufacturing.Domain.Entities.Product", "Product")
                         .WithMany("ProductFiles")
                         .HasForeignKey("ProductId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.Navigation("ProcessExecution");
 
                     b.Navigation("Product");
                 });
@@ -916,11 +907,6 @@ namespace Manufacturing.Infrastructure.Migrations
                     b.Navigation("ProductFiles");
 
                     b.Navigation("QualityControls");
-                });
-
-            modelBuilder.Entity("Manufacturing.Domain.Entities.ProductionLine", b =>
-                {
-                    b.Navigation("ProcessExecutions");
                 });
 
             modelBuilder.Entity("Manufacturing.Domain.Entities.ProductionProcess", b =>

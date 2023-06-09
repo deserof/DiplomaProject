@@ -77,7 +77,7 @@ const Products: React.FC = () => {
     <Container>
         <MainMenu />
       <Typography variant="h4" component="h1">
-        Список продуктов
+        Список изделий
       </Typography>
       <Box mt={2}>
         <Button
@@ -85,7 +85,7 @@ const Products: React.FC = () => {
           startIcon={<Add />}
           onClick={() => setAddDialogOpen(true)}
         >
-          Добавить продукт
+          Добавить изделие
         </Button>
 
         <TableContainer component={Paper} sx={{ marginTop: 2 }}>

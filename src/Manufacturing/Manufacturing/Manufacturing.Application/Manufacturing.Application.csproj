@@ -17,8 +17,4 @@
     <ProjectReference Include="..\Manufacturing.Domain\Manufacturing.Domain.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Processes\Commands\" />
-  </ItemGroup>
-
 </Project>

@@ -109,50 +109,50 @@ namespace Manufacturing.Infrastructure.Persistence
             {
                 new ProductionProcess
                 {
-                    Name = "Проверка качества сырья",
-                    Description = "Проверка качества ткани, резиновых материалов, фитингов и т.д.",
+                    Name = "Закупка сырья и материалов",
+                    Description = "Предприятия закупают сырье и материалы для производства своей продукции",
                     Duration = TimeSpan.FromHours(1)
                 },
                 new ProductionProcess
                 {
-                    Name = "Раскрой ткани",
-                    Description = "Раскрой ткани и других материалов для изготовления рукава",
+                    Name = "Обработка сырья",
+                    Description = "Сырье обрабатывается и преобразуется в промежуточные или конечные продукты. Это может включать механическую, химическую или физическую обработку",
                     Duration = TimeSpan.FromHours(2)
                 },
                 new ProductionProcess
                 {
-                    Name = "Производство внутреннего резинового слоя",
-                    Description = "Изготовление внутреннего резинового слоя рукава",
+                    Name = "Сборка",
+                    Description = "Промежуточные продукты собираются вместе для создания конечного продукта.",
                     Duration = TimeSpan.FromHours(3)
                 },
                 new ProductionProcess
                 {
-                    Name = "Производство наружного защитного слоя",
-                    Description = "Изготовление наружного текстильного или резинового слоя рукава",
+                    Name = "Контроль качества",
+                    Description = "Продукция проверяется на соответствие стандартам качества и требованиям заказчика.",
                     Duration = TimeSpan.FromHours(4)
                 },
                 new ProductionProcess
                 {
-                    Name = "Изготовление фитингов",
-                    Description = "Изготовление фитингов и присоединительных элементов для рукава",
+                    Name = "Упаковка и хранение",
+                    Description = "Продукты упаковываются и хранятся до момента отправки заказчику или дистрибьютору.",
                     Duration = TimeSpan.FromHours(2)
                 },
                 new ProductionProcess
                 {
-                    Name = "Сборка рукава",
-                    Description = "Соединение внутреннего и наружного слоев рукава, установка фитингов и присоединительных элементов",
+                    Name = "Логистика и транспортировка",
+                    Description = "Продукция транспортируется от предприятия к заказчикам или дистрибьюторам.",
                     Duration = TimeSpan.FromHours(3)
                 },
                 new ProductionProcess
                 {
-                    Name = "Технический контроль и испытания",
-                    Description = "Проведение гидравлических испытаний, проверка износа и стойкости к истиранию, гибкости и маневренности рукава",
+                    Name = "Обслуживание и поддержка",
+                    Description = "Послепродажное обслуживание и поддержка продукции обеспечивается для удовлетворения потребностей клиентов и поддержания долгосрочных отношений.",
                     Duration = TimeSpan.FromHours(2)
                 },
                 new ProductionProcess
                 {
-                    Name = "Упаковка и хранение",
-                    Description = "Упаковка готовых рукавов и размещение их на складе",
+                    Name = "Управление и планирование",
+                    Description = "Управление производственными процессами, планирование ресурсов и координация между различными отделами предприятия.",
                     Duration = TimeSpan.FromHours(1)
                 },
             };
@@ -164,30 +164,30 @@ namespace Manufacturing.Infrastructure.Persistence
             {
                 new Product
                 {
-                    Name = "Пожарный рукав 1,5\"",
-                    Description = "Пожарный рукав диаметром 1,5 дюйма с текстильным покрытием и стандартными фитингами",
+                    Name = "Теплообменник типа A",
+                    Description = "Пластинчатый теплообменник с высокой эффективностью для отопительных систем",
                     CreationDate = DateTime.Parse("2021-01-01"),
                     QualityStatus = "OK"
                 },
                 new Product
                 {
-                    Name = "Пожарный рукав 2\"",
-                    Description = "Пожарный рукав диаметром 2 дюйма с резиновым покрытием и стандартными фитингами",
+                    Name = "Теплообменник типа B",
+                    Description = "Трубчатый теплообменник для использования в промышленных системах охлаждения",
                     CreationDate = DateTime.Parse("2021-02-01"),
                     QualityStatus = "OK"
                 },
                 new Product
                 {
-                    Name = "Пожарный рукав 3\"",
-                    Description = "Пожарный рукав диаметром 3 дюйма с текстильным покрытием и стандартными фитингами",
+                    Name = "Теплообменник типа C",
+                    Description = "Кожухотрубный теплообменник для использования в системах кондиционирования воздуха",
                     CreationDate = DateTime.Parse("2021-03-01"),
                     QualityStatus = "OK"
                 },
                 new Product
                 {
-                    Name = "Пожарный рукав 4\"",
-                    Description = "Пожарный рукав диаметром 4 дюйма с резиновым покрытием и стандартными фитингами",
-                    CreationDate = DateTime.Parse("2021-04-01"),
+                    Name = "Теплообменник типа D",
+                    Description = "Кожухотрубный теплообменник для использования в системах кондиционирования воздуха",
+                    CreationDate = DateTime.Parse("2020-03-01"),
                     QualityStatus = "OK"
                 },
             };
@@ -233,16 +233,16 @@ namespace Manufacturing.Infrastructure.Persistence
                     StartTime = DateTime.Parse("2021-01-01 08:00"),
                     EndTime = DateTime.Parse("2021-01-01 09:00"),
                     EmployeeId = employees.Single(e => e.LastName == "Петров").Id,
-                    ProcessId = processes.Single(p => p.Name == "Проверка качества сырья").Id,
-                    ProductId = products.Single(pr => pr.Name == "Пожарный рукав 1,5\"").Id,
+                    ProcessId = processes.Single(p => p.Name == "Обслуживание и поддержка").Id,
+                    ProductId = products.Single(pr => pr.Name == "Теплообменник типа A").Id,
                 },
                 new ProcessExecution
                 {
                     StartTime = DateTime.Parse("2021-02-01 08:00"),
                     EndTime = DateTime.Parse("2021-02-01 09:00"),
                     EmployeeId = employees.Single(e => e.LastName == "Петров").Id,
-                    ProcessId = processes.Single(p => p.Name == "Проверка качества сырья").Id,
-                    ProductId = products.Single(pr => pr.Name == "Пожарный рукав 1,5\"").Id,
+                    ProcessId = processes.Single(p => p.Name == "Сборка").Id,
+                    ProductId = products.Single(pr => pr.Name == "Теплообменник типа A").Id,
                 },
             };
             _context.ProcessExecutions.AddRange(processExecutions);
@@ -257,7 +257,7 @@ namespace Manufacturing.Infrastructure.Persistence
                     Result = "OK",
                     Comment = "Все параметры соответствуют стандартам",
                     EmployeeId = employees.Single(e => e.LastName == "Сергеев").Id,
-                    ProductId = products.Single(pr => pr.Name == "Пожарный рукав 1,5\"").Id
+                    ProductId = products.Single(pr => pr.Name == "Теплообменник типа A").Id
                 },
                 new QualityControl
                 {
@@ -265,7 +265,7 @@ namespace Manufacturing.Infrastructure.Persistence
                     Result = "OK",
                     Comment = "Все параметры соответствуют стандартам",
                     EmployeeId = employees.Single(e => e.LastName == "Сергеев").Id,
-                    ProductId = products.Single(pr => pr.Name == "Пожарный рукав 2\"").Id
+                    ProductId = products.Single(pr => pr.Name == "Теплообменник типа A").Id
                 },
                 new QualityControl
                 {
@@ -273,7 +273,7 @@ namespace Manufacturing.Infrastructure.Persistence
                     Result = "OK",
                     Comment = "Все параметры соответствуют стандартам",
                     EmployeeId = employees.Single(e => e.LastName == "Сергеев").Id,
-                    ProductId = products.Single(pr => pr.Name == "Пожарный рукав 3\"").Id
+                    ProductId = products.Single(pr => pr.Name == "Теплообменник типа A").Id
                 },
                 new QualityControl
                 {
@@ -281,7 +281,7 @@ namespace Manufacturing.Infrastructure.Persistence
                     Result = "OK",
                     Comment = "Все параметры соответствуют стандартам",
                     EmployeeId = employees.Single(e => e.LastName == "Сергеев").Id,
-                    ProductId = products.Single(pr => pr.Name == "Пожарный рукав 4\"").Id
+                    ProductId = products.Single(pr => pr.Name == "Теплообменник типа B").Id
                 },
             };
             _context.QualityControls.AddRange(qualityControls);

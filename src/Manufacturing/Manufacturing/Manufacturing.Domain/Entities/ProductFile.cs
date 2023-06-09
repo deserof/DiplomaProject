@@ -12,11 +12,14 @@ namespace Manufacturing.Domain.Entities
         [ForeignKey("Product")]
         public int ProductId { get; set; }
         public virtual Product Product { get; set; }
+
+        public int? ProcessExecutionId { get; set; }
+        public virtual ProcessExecution ProcessExecution { get; set; }
     }
 
     public enum FileType
     {
         Drawing,
-        Model3D
+        Photo
     }
 }

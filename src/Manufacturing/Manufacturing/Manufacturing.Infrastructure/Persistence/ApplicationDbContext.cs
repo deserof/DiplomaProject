@@ -30,12 +30,25 @@ namespace Manufacturing.Infrastructure.Persistence
         public DbSet<ProductionOrder> ProductionOrders => Set<ProductionOrder>();
         public DbSet<ProcessExecution> ProcessExecutions => Set<ProcessExecution>();
         public DbSet<QualityControl> QualityControls => Set<QualityControl>();
+        public DbSet<ProductFile> ProductFiles => Set<ProductFile>();
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
             builder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
 
             base.OnModelCreating(builder);
+
+            builder.Entity<ProcessExecution>()
+                .HasOne(pe => pe.ProcessFile)
+                .WithMany()
+                .HasForeignKey(pe => pe.ProcessFileId)
+                .OnDelete(DeleteBehavior.Restrict);
+
+            builder.Entity<ProcessExecution>()
+                .HasOne(pe => pe.ProcessPhoto)
+                .WithMany()
+                .HasForeignKey(pe => pe.ProcessPhotoId)
+                .OnDelete(DeleteBehavior.Restrict);
         }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)

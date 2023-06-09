@@ -1,14 +1,12 @@
 ﻿using Manufacturing.Application.Common.Mappings;
 using Manufacturing.Domain.Entities;
 
-namespace Manufacturing.Application.Products.Queries.ViewModels
+namespace Manufacturing.Application.ProductionProcesses.Queries.GetProductionProcessesWithPagination
 {
-    public class ProductDto : IMapFrom<Product>
+    public class ProductionProcessVm : IMapFrom<ProductionProcess>
     {
         public int Id { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
-        public DateTime CreationDate { get; set; }
-        public string QualityStatus { get; set; }
     }
 }

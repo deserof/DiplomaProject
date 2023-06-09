@@ -17,6 +17,8 @@ namespace Manufacturing.Application.Common.Interfaces
 
         DbSet<QualityControl> QualityControls { get; }
 
+        DbSet<ProductFile> ProductFiles { get; }
+
         Task<int> SaveChangesAsync(CancellationToken cancellationToken);
 
         DbSet<TEntity> Set<TEntity>() where TEntity : class;

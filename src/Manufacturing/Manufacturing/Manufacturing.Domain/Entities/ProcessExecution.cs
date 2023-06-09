@@ -20,6 +20,12 @@ namespace Manufacturing.Domain.Entities
         public int ProductId { get; set; }
         public virtual Product Product { get; set; }
 
-        public virtual ICollection<ProductFile> ProductFiles { get; set; }
+        [ForeignKey("ProcessFile")]
+        public int? ProcessFileId { get; set; }
+        public virtual ProductFile ProcessFile { get; set; }
+
+        [ForeignKey("ProcessPhoto")]
+        public int? ProcessPhotoId { get; set; }
+        public virtual ProductFile ProcessPhoto { get; set; }
     }
 }

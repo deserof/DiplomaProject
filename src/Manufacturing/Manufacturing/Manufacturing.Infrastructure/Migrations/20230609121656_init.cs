@@ -1,11 +1,10 @@
-﻿using System;
-using Microsoft.EntityFrameworkCore.Migrations;
+﻿using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
 namespace Manufacturing.Infrastructure.Migrations
 {
-    public partial class initial : Migration
+    public partial class init : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -83,24 +82,6 @@ namespace Manufacturing.Infrastructure.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_OpenIddictScopes", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "ProductionLines",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Capacity = table.Column<int>(type: "int", nullable: false),
-                    Created = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    CreatedBy = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    LastModified = table.Column<DateTime>(type: "datetime2", nullable: true),
-                    LastModifiedBy = table.Column<string>(type: "nvarchar(max)", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_ProductionLines", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -242,78 +223,6 @@ namespace Manufacturing.Infrastructure.Migrations
                         column: x => x.ApplicationId,
                         principalTable: "OpenIddictApplications",
                         principalColumn: "Id");
-                });
-
-            migrationBuilder.CreateTable(
-                name: "ProcessExecutions",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    StartTime = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    EndTime = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    EmployeeId = table.Column<int>(type: "int", nullable: false),
-                    ProcessId = table.Column<int>(type: "int", nullable: false),
-                    ProductId = table.Column<int>(type: "int", nullable: false),
-                    LineId = table.Column<int>(type: "int", nullable: false),
-                    Created = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    CreatedBy = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    LastModified = table.Column<DateTime>(type: "datetime2", nullable: true),
-                    LastModifiedBy = table.Column<string>(type: "nvarchar(max)", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_ProcessExecutions", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_ProcessExecutions_Employees_EmployeeId",
-                        column: x => x.EmployeeId,
-                        principalTable: "Employees",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_ProcessExecutions_ProductionLines_LineId",
-                        column: x => x.LineId,
-                        principalTable: "ProductionLines",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_ProcessExecutions_ProductionProcesses_ProcessId",
-                        column: x => x.ProcessId,
-                        principalTable: "ProductionProcesses",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_ProcessExecutions_Products_ProductId",
-                        column: x => x.ProductId,
-                        principalTable: "Products",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "ProductFile",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    FileName = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    FileType = table.Column<int>(type: "int", nullable: false),
-                    FileContent = table.Column<byte[]>(type: "varbinary(max)", nullable: true),
-                    ProductId = table.Column<int>(type: "int", nullable: false),
-                    Created = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    CreatedBy = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    LastModified = table.Column<DateTime>(type: "datetime2", nullable: true),
-                    LastModifiedBy = table.Column<string>(type: "nvarchar(max)", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_ProductFile", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_ProductFile_Products_ProductId",
-                        column: x => x.ProductId,
-                        principalTable: "Products",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -467,6 +376,79 @@ namespace Manufacturing.Infrastructure.Migrations
                         principalColumn: "Id");
                 });
 
+            migrationBuilder.CreateTable(
+                name: "ProcessExecutions",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    StartTime = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    EndTime = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    EmployeeId = table.Column<int>(type: "int", nullable: false),
+                    ProcessId = table.Column<int>(type: "int", nullable: false),
+                    ProductId = table.Column<int>(type: "int", nullable: false),
+                    ProcessFileId = table.Column<int>(type: "int", nullable: true),
+                    ProcessPhotoId = table.Column<int>(type: "int", nullable: true),
+                    Created = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    CreatedBy = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    LastModified = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    LastModifiedBy = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_ProcessExecutions", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_ProcessExecutions_Employees_EmployeeId",
+                        column: x => x.EmployeeId,
+                        principalTable: "Employees",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_ProcessExecutions_ProductionProcesses_ProcessId",
+                        column: x => x.ProcessId,
+                        principalTable: "ProductionProcesses",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_ProcessExecutions_Products_ProductId",
+                        column: x => x.ProductId,
+                        principalTable: "Products",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "ProductFiles",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    FileName = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    FileType = table.Column<int>(type: "int", nullable: false),
+                    FileContent = table.Column<byte[]>(type: "varbinary(max)", nullable: true),
+                    ProductId = table.Column<int>(type: "int", nullable: false),
+                    ProcessExecutionId = table.Column<int>(type: "int", nullable: true),
+                    Created = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    CreatedBy = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    LastModified = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    LastModifiedBy = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_ProductFiles", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_ProductFiles_ProcessExecutions_ProcessExecutionId",
+                        column: x => x.ProcessExecutionId,
+                        principalTable: "ProcessExecutions",
+                        principalColumn: "Id");
+                    table.ForeignKey(
+                        name: "FK_ProductFiles_Products_ProductId",
+                        column: x => x.ProductId,
+                        principalTable: "Products",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",
                 table: "AspNetRoleClaims",
@@ -553,9 +535,9 @@ namespace Manufacturing.Infrastructure.Migrations
                 column: "EmployeeId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_ProcessExecutions_LineId",
+                name: "IX_ProcessExecutions_ProcessFileId",
                 table: "ProcessExecutions",
-                column: "LineId");
+                column: "ProcessFileId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_ProcessExecutions_ProcessId",
@@ -563,13 +545,23 @@ namespace Manufacturing.Infrastructure.Migrations
                 column: "ProcessId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_ProcessExecutions_ProcessPhotoId",
+                table: "ProcessExecutions",
+                column: "ProcessPhotoId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_ProcessExecutions_ProductId",
                 table: "ProcessExecutions",
                 column: "ProductId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_ProductFile_ProductId",
-                table: "ProductFile",
+                name: "IX_ProductFiles_ProcessExecutionId",
+                table: "ProductFiles",
+                column: "ProcessExecutionId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_ProductFiles_ProductId",
+                table: "ProductFiles",
                 column: "ProductId");
 
             migrationBuilder.CreateIndex(
@@ -586,10 +578,38 @@ namespace Manufacturing.Infrastructure.Migrations
                 name: "IX_QualityControls_ProductId",
                 table: "QualityControls",
                 column: "ProductId");
+
+            migrationBuilder.AddForeignKey(
+                name: "FK_ProcessExecutions_ProductFiles_ProcessFileId",
+                table: "ProcessExecutions",
+                column: "ProcessFileId",
+                principalTable: "ProductFiles",
+                principalColumn: "Id",
+                onDelete: ReferentialAction.Restrict);
+
+            migrationBuilder.AddForeignKey(
+                name: "FK_ProcessExecutions_ProductFiles_ProcessPhotoId",
+                table: "ProcessExecutions",
+                column: "ProcessPhotoId",
+                principalTable: "ProductFiles",
+                principalColumn: "Id",
+                onDelete: ReferentialAction.Restrict);
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.DropForeignKey(
+                name: "FK_ProcessExecutions_Employees_EmployeeId",
+                table: "ProcessExecutions");
+
+            migrationBuilder.DropForeignKey(
+                name: "FK_ProcessExecutions_ProductFiles_ProcessFileId",
+                table: "ProcessExecutions");
+
+            migrationBuilder.DropForeignKey(
+                name: "FK_ProcessExecutions_ProductFiles_ProcessPhotoId",
+                table: "ProcessExecutions");
+
             migrationBuilder.DropTable(
                 name: "AspNetRoleClaims");
 
@@ -612,12 +632,6 @@ namespace Manufacturing.Infrastructure.Migrations
                 name: "OpenIddictTokens");
 
             migrationBuilder.DropTable(
-                name: "ProcessExecutions");
-
-            migrationBuilder.DropTable(
-                name: "ProductFile");
-
-            migrationBuilder.DropTable(
                 name: "ProductionOrders");
 
             migrationBuilder.DropTable(
@@ -633,19 +647,22 @@ namespace Manufacturing.Infrastructure.Migrations
                 name: "OpenIddictAuthorizations");
 
             migrationBuilder.DropTable(
-                name: "ProductionLines");
+                name: "OpenIddictApplications");
+
+            migrationBuilder.DropTable(
+                name: "Employees");
+
+            migrationBuilder.DropTable(
+                name: "ProductFiles");
+
+            migrationBuilder.DropTable(
+                name: "ProcessExecutions");
 
             migrationBuilder.DropTable(
                 name: "ProductionProcesses");
 
             migrationBuilder.DropTable(
                 name: "Products");
-
-            migrationBuilder.DropTable(
-                name: "Employees");
-
-            migrationBuilder.DropTable(
-                name: "OpenIddictApplications");
         }
     }
 }

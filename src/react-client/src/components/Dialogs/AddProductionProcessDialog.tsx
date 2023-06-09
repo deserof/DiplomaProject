@@ -1,4 +1,3 @@
-// AddProductDialog.tsx
 import React, { useState } from 'react';
 import {
   Dialog,
@@ -8,42 +7,38 @@ import {
   DialogActions,
   Button,
 } from '@mui/material';
-import { Product } from '../../common/types';
+import { ProductionProcess } from '../../common/types';
 
-interface AddProductDialogProps {
+interface AddProductionProcessDialogProps {
   open: boolean;
   onClose: () => void;
-  onSubmit: (product: Product) => void;
+  onSubmit: (productionProcess: ProductionProcess) => void;
 }
 
-const AddProductDialog: React.FC<AddProductDialogProps> = ({
+const AddProductionProcessDialog: React.FC<AddProductionProcessDialogProps> = ({
   open,
   onClose,
   onSubmit,
 }) => {
   const [name, setName] = useState('');
   const [description, setDescription] = useState('');
-  const [qualityStatus, setQualityStatus] = useState('');
 
   const handleSubmit = () => {
-    const newProduct: Product = {
+    const newProductionProcess: ProductionProcess = {
         name,
         description,
-        qualityStatus,
-        creationDate: new Date().toISOString(),
         id: 0
     };
 
-    onSubmit(newProduct);
+    onSubmit(newProductionProcess);
 
     setName('');
     setDescription('');
-    setQualityStatus('');
 }
 
   return (
     <Dialog open={open} onClose={onClose}>
-      <DialogTitle>Добавить изделие</DialogTitle>
+      <DialogTitle>Добавить производственный процесс</DialogTitle>
       <DialogContent>
         <TextField
           autoFocus
@@ -60,13 +55,6 @@ const AddProductDialog: React.FC<AddProductDialogProps> = ({
           value={description}
           onChange={(e) => setDescription(e.target.value)}
         />
-        <TextField
-          margin="dense"
-          label="Статус качества"
-          fullWidth
-          value={qualityStatus}
-          onChange={(e) => setQualityStatus(e.target.value)}
-        />
       </DialogContent>
       <DialogActions>
         <Button onClick={onClose}>Отмена</Button>
@@ -76,4 +64,4 @@ const AddProductDialog: React.FC<AddProductDialogProps> = ({
   );
 };
 
-export default AddProductDialog;
+export default AddProductionProcessDialog;

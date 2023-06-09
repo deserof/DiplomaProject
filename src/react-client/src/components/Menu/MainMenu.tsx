@@ -8,9 +8,9 @@ const MainMenu: React.FC = () => {
   
     return (
       <ButtonGroup variant="contained" color="primary" aria-label="main menu">
-        <Button onClick={() => navigate('/products')}>Продукты</Button>
+        <Button onClick={() => navigate('/products')}>Изделия</Button>
         <Button onClick={() => navigate('/report')}>Отчет</Button>
-        <Button onClick={() => navigate('/processes')}>Производственные процессы</Button>
+        <Button onClick={() => navigate('/productionProcesses')}>Производственные процессы</Button>
         <Button onClick={() => navigate('/users')}>Пользователи</Button>
       </ButtonGroup>
     );

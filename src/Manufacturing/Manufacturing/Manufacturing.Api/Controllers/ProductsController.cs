@@ -5,11 +5,13 @@ using Manufacturing.Application.Products.Commands.UpdateProduct;
 using Manufacturing.Application.Products.Queries.GetProductsWithPagination;
 using Manufacturing.Application.Products.Queries.ViewModels;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using OpenIddict.Validation.AspNetCore;
 
 namespace Manufacturing.Api.Controllers
 {
-    // [Authorize(AuthenticationSchemes = OpenIddictValidationAspNetCoreDefaults.AuthenticationScheme)]
+    [Authorize(AuthenticationSchemes = OpenIddictValidationAspNetCoreDefaults.AuthenticationScheme)]
     [Route("api/[controller]")]
     [ApiController]
     public class ProductsController : ControllerBase
@@ -22,7 +24,7 @@ namespace Manufacturing.Api.Controllers
         }
 
         [HttpGet]
-        public async Task<PaginatedList<ProductDto>> GetProducts([FromQuery] GetProductsWithPaginationQuery query)
+        public async Task<PaginatedList<ProductVm>> GetProducts([FromQuery] GetProductsWithPaginationQuery query)
         {
             return await _mediator.Send(query);
         }

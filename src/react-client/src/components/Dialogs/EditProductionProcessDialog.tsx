@@ -1,4 +1,3 @@
-// EditProductDialog.tsx
 import React, { useState, useEffect } from 'react';
 import {
   Dialog,
@@ -8,42 +7,41 @@ import {
   DialogActions,
   Button,
 } from '@mui/material';
-import { Product } from '../../common/types';
+import { ProductionProcess } from '../../common/types';
 
-interface EditProductDialogProps {
+interface EditProductionProcessDialogProps {
   open: boolean;
   onClose: () => void;
-  onSubmit: (product: Product) => void;
-  product: Product | null;
+  onSubmit: (productionProcess: ProductionProcess) => void;
+  productionProcess: ProductionProcess | null;
 }
 
-const EditProductDialog: React.FC<EditProductDialogProps> = ({
+const EditProductionProcessDialog: React.FC<EditProductionProcessDialogProps> = ({
   open,
   onClose,
   onSubmit,
-  product,
+  productionProcess: productionProcess,
 }) => {
   const [name, setName] = useState('');
   const [description, setDescription] = useState('');
   const [qualityStatus, setQualityStatus] = useState('');
 
   useEffect(() => {
-    if (product) {
-      setName(product.name);
-      setDescription(product.description);
-      setQualityStatus(product.qualityStatus);
+    if (productionProcess) {
+      setName(productionProcess.name);
+      setDescription(productionProcess.description);
     }
-  }, [product]);
+  }, [productionProcess]);
 
   const handleSubmit = () => {
-    if (product) {
-      onSubmit({ ...product, name, description, qualityStatus });
+    if (productionProcess) {
+      onSubmit({ ...productionProcess, name, description });
     }
   };
 
   return (
     <Dialog open={open} onClose={onClose}>
-      <DialogTitle>Изменить изделие</DialogTitle>
+      <DialogTitle>Изменить производственный процесс</DialogTitle>
       <DialogContent>
         <TextField
           autoFocus
@@ -60,13 +58,6 @@ const EditProductDialog: React.FC<EditProductDialogProps> = ({
           value={description}
           onChange={(e) => setDescription(e.target.value)}
         />
-        <TextField
-          margin="dense"
-          label="Статус качества"
-          fullWidth
-          value={qualityStatus}
-          onChange={(e) => setQualityStatus(e.target.value)}
-        />
       </DialogContent>
       <DialogActions>
         <Button onClick={onClose}>Отмена</Button>
@@ -76,4 +67,4 @@ const EditProductDialog: React.FC<EditProductDialogProps> = ({
   );
 };
 
-export default EditProductDialog;
+export default EditProductionProcessDialog;

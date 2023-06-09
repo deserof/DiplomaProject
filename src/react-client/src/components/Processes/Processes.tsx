@@ -1,5 +1,5 @@
 import { useNavigate } from 'react-router-dom';
-import { Button } from '@mui/material';
+import { Button, Container } from '@mui/material';
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import {
@@ -131,7 +131,7 @@ const Processes: React.FC = () => {
   };
 
   return (
-    <div>
+    <Container>
         <MainMenu />
 <h1>Процессы для продукта {id}</h1>
     <Button
@@ -226,7 +226,7 @@ const Processes: React.FC = () => {
         }}
       />
 
-    </div>
+    </Container>
   );
                 }          
 export default Processes;
