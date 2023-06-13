@@ -14,7 +14,7 @@ using static OpenIddict.Abstractions.OpenIddictConstants;
 namespace Manufacturing.Api.Controllers
 {
     [AllowAnonymous]
-    public class AuthorizationController : Controller
+    public class AuthorizationController : ControllerBase
     {
         private readonly SignInManager<ApplicationUser> _signInManager;
         private readonly UserManager<ApplicationUser> _userManager;

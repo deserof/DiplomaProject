@@ -4,6 +4,7 @@ using Manufacturing.Application.Processes.Commands.DeleteProcess;
 using Manufacturing.Application.Processes.Commands.UploadProcessFile;
 using Manufacturing.Application.Processes.Commands.UploadProcessPhoto;
 using Manufacturing.Application.Processes.Queries.GetProcessesByProductId;
+using Manufacturing.Application.Processes.Queries.GetProcessPhoto;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -90,6 +91,12 @@ namespace Manufacturing.Api.Controllers
         {
             await _mediator.Send(new DeleteProcessCommand(id));
             return NoContent();
+        }
+
+        [HttpGet("{id}/photos")]
+        public async Task<ActionResult<List<ProcessPhotoVm>>> GetPhotos(int id)
+        {
+            return await _mediator.Send(new GetProcessPhotoQuery(id));
         }
     }
 }

@@ -12,8 +12,8 @@ import { uploadProcessFile } from '../../common/apiService';
 interface FileDialogProps {
   open: boolean;
   onClose: () => void;
-  onAdd: (file: File | null, processId: number) => void;
-  processId: number;
+  onAdd: (file: File | null, processId: number | null) => void;
+  processId: number | null;
 }
 
 let selectedFile: File | null = null;

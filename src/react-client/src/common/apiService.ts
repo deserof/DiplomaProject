@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { BASE_URL } from './constants';
-import { ProcessesResponse, Product, ProductionProcess, ProductionProcessesResponse, ProductsResponse, UsersResponse } from './types';
+import { PaginatedResponse, Process, Product, ProductionProcess, User } from './types';
 
 function getAccessToken() {
   return localStorage.getItem('access_token');
@@ -28,7 +28,7 @@ api.interceptors.request.use(
 
 // Products
 
-export const getProducts = async (pageNumber: number, pageSize: number): Promise<ProductsResponse> => {
+export const getProducts = async (pageNumber: number, pageSize: number): Promise<PaginatedResponse<Product>> => {
   try {
     const response = await api.get('/api/Products', {
       params: {
@@ -73,7 +73,7 @@ export const deleteProduct = async (id: number) => {
 
 // Users
 
-export const getUsers = async (pageNumber: number, pageSize: number): Promise<UsersResponse> => {
+export const getUsers = async (pageNumber: number, pageSize: number): Promise<PaginatedResponse<User>> => {
   try {
     const response = await api.get('/api/Users', {
       params: {
@@ -98,7 +98,7 @@ export const getUsers = async (pageNumber: number, pageSize: number): Promise<Us
 
 // Production processes
 
-export const getProductionProcesses = async (pageNumber: number, pageSize: number): Promise<ProductionProcessesResponse> => {
+export const getProductionProcesses = async (pageNumber: number, pageSize: number): Promise<PaginatedResponse<ProductionProcess>> => {
   try {
     const response = await api.get('/api/ProductionProcesses', {
       params: {
@@ -138,7 +138,12 @@ export const deleteProductionProcess = async (id: number) => {
 
 // Processes
 
-export const getProcesses = async (productId: number, pageNumber: number, pageSize: number): Promise<ProcessesResponse> => {
+export const addProcess = async (productionProcess: Process) => {
+  const response = await api.post<Product>('/api/Processes', productionProcess);
+  return response.data;
+};
+
+export const getProcesses = async (productId: number, pageNumber: number, pageSize: number): Promise<PaginatedResponse<Process>> => {
   try {
     const response = await api.get('/api/Processes', {
       params: {
@@ -162,6 +167,11 @@ export const getProcesses = async (productId: number, pageNumber: number, pageSi
   }
 };
 
+export const deleteProcess = async (id: number) => {
+  const response = await api.delete(`/api/Processes/${id}`);
+  return response.data;
+};
+
 export const uploadProcessPhoto = async (id: number, file: File) => {
   const formData = new FormData();
   formData.append('processPhoto', file);
@@ -174,7 +184,7 @@ export const uploadProcessPhoto = async (id: number, file: File) => {
   return response.data;
 };
 
-export const uploadProcessFile = async (id: number, file: File) => {
+export const uploadProcessFile = async (id: number | null, file: File) => {
   const formData = new FormData();
   formData.append('processFile', file);
 
@@ -186,3 +196,31 @@ export const uploadProcessFile = async (id: number, file: File) => {
   return response.data;
 };
 
+export const getProcessPhotos = async (processId: number) => {
+  try {
+    const response = await api.get(`/api/processes/${processId}/photos`);
+    return response.data;
+  } catch (error) {
+    console.error('Ошибка при получении фотографий процесса:', error);
+    return [];
+  }
+};
+
+// report
+
+export const downloadExcel = async (fromDate: Date, endDate: Date): Promise<Blob> => {
+  try {
+    const response = await api.get("/api/reports/generate", {
+      responseType: "blob",
+      params: {
+        from: fromDate.toISOString(),
+        end: endDate.toISOString(),
+      },
+    });
+
+    return response.data;
+  } catch (error) {
+    console.error("Ошибка при загрузке Excel-файла:", error);
+    throw error;
+  }
+};

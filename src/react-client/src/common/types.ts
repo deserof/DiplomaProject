@@ -1,18 +1,18 @@
+export interface PaginatedResponse<T> {
+  items: T[];
+  pageNumber: number;
+  totalPages: number;
+  totalCount: number;
+  hasPreviousPage: boolean;
+  hasNextPage: boolean;
+}
+
 export interface Product {
   id: number;
   name: string;
   description: string;
   creationDate: string;
   qualityStatus: string;
-}
-
-export interface ProductsResponse {
-  items: Product[];
-  pageNumber: number;
-  totalPages: number;
-  totalCount: number;
-  hasPreviousPage: boolean;
-  hasNextPage: boolean;
 }
 
 export interface User {
@@ -23,28 +23,10 @@ export interface User {
   hireDate: Date;
 }
 
-export interface UsersResponse {
-  items: User[];
-  pageNumber: number;
-  totalPages: number;
-  totalCount: number;
-  hasPreviousPage: boolean;
-  hasNextPage: boolean;
-}
-
 export interface ProductionProcess {
   id: number;
   name: string;
   description: string;
-}
-
-export interface ProductionProcessesResponse {
-  items: ProductionProcess[];
-  pageNumber: number;
-  totalPages: number;
-  totalCount: number;
-  hasPreviousPage: boolean;
-  hasNextPage: boolean;
 }
 
 // Processes
@@ -57,13 +39,5 @@ export interface Process {
   endTime: string;
   productionProcessId: number;
   productionProcessDescription: string;
-}
-
-export interface ProcessesResponse {
-  items: Process[];
-  pageNumber: number;
-  totalPages: number;
-  totalCount: number;
-  hasPreviousPage: boolean;
-  hasNextPage: boolean;
+  productId: number;
 }

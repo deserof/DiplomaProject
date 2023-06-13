@@ -18,15 +18,19 @@ import FileDialog from '../Dialogs/FileDialog';
 import DeleteDialog from '../Dialogs/DeleteDialog';
 import MainMenu from '../Menu/MainMenu';
 import { Process } from '../../common/types';
-import { getProcesses, getProduct } from '../../common/apiService';
+import { addProcess, deleteProcess, getProcessPhotos, getProcesses, getProduct, uploadProcessPhoto } from '../../common/apiService';
 import ExpandMore from '@mui/icons-material/ExpandMore';
 import ExpandLess from '@mui/icons-material/ExpandLess';
+import AddProcessDialog from '../Dialogs/AddProcessDialog';
+import { formatDate } from '../../common/dateUtils';
 
 const Processes: React.FC = () => {
   const [fileDialogOpen, setFileDialogOpen] = useState<boolean>(false);
-  const openFileDialog = () => {
+  const openFileDialog = (processId: number) => {
+    setCurrentProcessId(processId);
     setFileDialogOpen(true);
   };
+  const [currentProcessId, setCurrentProcessId] = useState<number | null>(null);
   const closeFileDialog = () => {
     setFileDialogOpen(false);
   };
@@ -47,6 +51,7 @@ const Processes: React.FC = () => {
   const [pageNumber, setPage] = useState(0);
   const [pageSize, setPageSize] = useState(1000);
   const [productName, setProductName] = useState<string>();
+  const [images, setImages] = useState([]);
 
   useEffect(() => {
     console.log('Загрузка продукта и процессов');
@@ -66,16 +71,32 @@ const Processes: React.FC = () => {
   }
 
   const [selectedProcess, setSelectedProcess] = useState<number | null>(null);
-  const handleDetailsClick = (processId: number) => {
-    setSelectedProcess(selectedProcess === processId ? null : processId);
-  };
 
   const handleDeleteProcess = async (processId: number) => {
-    // Здесь вызывайте функцию API для удаления процесса
-    // await deleteProcess(processId);
-
-    // Обновите список процессов после удаления
+    await deleteProcess(processId);
     fetchProcesses();
+  };
+
+  const [processImages, setProcessImages] = useState<{ [key: number]: any[] }>({});
+  const handleDetailsClick = async (processId: number) => {
+    if (selectedProcess !== processId) {
+      await fetchPhotos(processId);
+    }
+    setSelectedProcess(selectedProcess === processId ? null : processId);
+  };
+  const fetchPhotos = async (processId: number) => {
+    const fetchedImages = await getProcessPhotos(processId);
+    setProcessImages((prevImages) => ({
+      ...prevImages,
+      [processId]: fetchedImages,
+    }));
+  };
+  const [addDialogOpen, setAddDialogOpen] = useState(false);
+
+  const handleAddProcess = async (process: Process) => {
+    await addProcess(process);
+    fetchProcesses();
+    setAddDialogOpen(false);
   };
 
   return (
@@ -86,9 +107,7 @@ const Processes: React.FC = () => {
         variant="contained"
         color="primary"
         style={{ marginRight: '1rem', marginBottom: '1rem' }}
-        onClick={() => {
-          // Здесь добавьте логику для добавления процесса
-        }}
+        onClick={() => setAddDialogOpen(true)}
       >
         Добавить процесс
       </Button>
@@ -129,7 +148,8 @@ const Processes: React.FC = () => {
                       marginTop: '0.5rem',
                       fontSize: '0.875rem',
                     }}
-                  >      {selectedProcess === process.id ? <ExpandLess /> : <ExpandMore />}
+                  >
+                    {selectedProcess === process.id ? <ExpandLess /> : <ExpandMore />}
                     <span style={{ marginLeft: '0.25rem' }}>Подробнее</span>
                   </div>
 
@@ -137,45 +157,62 @@ const Processes: React.FC = () => {
                     <div>
                       <h3>Расширенное описание процесса:</h3>
                       <p>{process.productionProcessDescription}</p>
+                      <div>
+                        {processImages[process.id]?.map((image, index) => (
+                          <img
+                            key={index}
+                            src={`data:image/png;base64, ${image.imageData}`}
+                            alt={`Процесс фото ${index + 1}`}
+                            style={{ maxWidth: '100%', maxHeight: '300px', margin: '0.5rem' }}
+                          />
+                        ))}
+                      </div>
                     </div>
                   )}
                 </TableCell>
-                <TableCell>{process.startTime}</TableCell>
-                <TableCell>{process.endTime}</TableCell>
+                <TableCell>{formatDate(process.startTime)}</TableCell>
+                <TableCell>{formatDate(process.endTime)}</TableCell>
                 <TableCell>
-                  <TableCell>
-                    <IconButton onClick={() => openDeleteDialog(process.id)}>
-                      <Delete />
-                    </IconButton>
-                    <IconButton onClick={() => openFileDialog()}>
-                      <CloudUpload />
-                    </IconButton>
-                    <IconButton
-                      onClick={() => {
-                        const photoUploadInput = document.getElementById(
-                          'photoUpload'
-                        ) as HTMLInputElement;
-                        photoUploadInput?.click();
-                      }}
-                    >
-                      <AddAPhoto />
-                    </IconButton>
-                  </TableCell>
+                  <IconButton onClick={() => openDeleteDialog(process.id)}>
+                    <Delete />
+                  </IconButton>
+                  <IconButton onClick={() => openFileDialog(process.id)}>
+                    <CloudUpload />
+                  </IconButton>
+                  <IconButton
+                    onClick={() => {
+                      const photoUploadInput = document.getElementById(
+                        `photoUpload-${process.id}`
+                      ) as HTMLInputElement;
+                      photoUploadInput?.click();
+                    }}
+                  >
+                    <AddAPhoto />
+                  </IconButton>
 
                   <input
                     type="file"
-                    id="photoUpload"
+                    id={`photoUpload-${process.id}`}
                     accept="image/*"
                     style={{ display: 'none' }}
-                    onChange={(e) => {
-                      // Здесь добавьте логику для загрузки фото
+                    onChange={async (e) => {
+                      if (e.target.files && e.target.files.length > 0) {
+                        const file = e.target.files[0];
+                        try {
+                          console.log('Добавлено фото:', file, 'для процесса с ID:', process.id);
+                          await uploadProcessPhoto(process.id, file);
+                          console.log('Фото успешно загружено');
+                        } catch (error) {
+                          console.error('Ошибка при загрузке фото:', error);
+                        }
+                      }
                     }}
                   />
 
                   <FileDialog
                     open={fileDialogOpen}
                     onClose={closeFileDialog}
-                    processId={process.id}
+                    processId={currentProcessId}
                     onAdd={(file, processId) => {
                       console.log('Добавлен файл:', file, 'для процесса с ID:', processId);
                     }}
@@ -187,6 +224,13 @@ const Processes: React.FC = () => {
           </TableBody>
         </Table>
       </TableContainer>
+
+      <AddProcessDialog
+        open={addDialogOpen}
+        onClose={() => setAddDialogOpen(false)}
+        onSubmit={handleAddProcess}
+        productId={Number(id)}
+      />
 
       <DeleteDialog
         open={deleteDialogOpen}

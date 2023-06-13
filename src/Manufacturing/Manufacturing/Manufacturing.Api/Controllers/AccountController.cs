@@ -8,11 +8,10 @@ using Microsoft.AspNetCore.Mvc;
 namespace Manufacturing.Api.Controllers
 {
     [AllowAnonymous]
-    public class AccountController : Controller
+    public class AccountController : ControllerBase
     {
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly ApplicationDbContext _applicationDbContext;
-        private static bool _databaseChecked;
 
         public AccountController(
             UserManager<ApplicationUser> userManager,
@@ -42,7 +41,6 @@ namespace Manufacturing.Api.Controllers
                 AddErrors(result);
             }
 
-            // If we got this far, something failed.
             return BadRequest(ModelState);
         }
 

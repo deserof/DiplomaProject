@@ -11,7 +11,7 @@ import {
     Container,
 } from '@mui/material';
 import { getUsers } from '../../common/apiService';
-import { User, UsersResponse } from '../../common/types';
+import { User, PaginatedResponse } from '../../common/types';
 import { TablePagination } from '@mui/material';
 import MainMenu from '../Menu/MainMenu';
 
@@ -39,7 +39,7 @@ const Users: React.FC = () => {
     useEffect(() => {
         const fetchUsers = async () => {
             const pageSize = 10;
-            const response: UsersResponse = await getUsers(currentPage, pageSize);
+            const response: PaginatedResponse<User> = await getUsers(currentPage, pageSize);
             setUsers(response.items);
             setTotalPages(response.totalPages);
         };

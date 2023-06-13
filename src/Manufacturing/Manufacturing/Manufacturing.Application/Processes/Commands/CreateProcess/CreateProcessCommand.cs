@@ -8,18 +8,22 @@ namespace Manufacturing.Application.Processes.Commands.CreateProcess
     {
         public DateTime StartTime { get; set; }
         public DateTime EndTime { get; set; }
-        public int EmployeeId { get; set; }
-        public int ProcessId { get; set; }
+        public int ProductionProcessId { get; set; }
         public int ProductId { get; set; }
+        public string Description { get; set; }
     }
 
     public class CreateProcessCommandHandler : IRequestHandler<CreateProcessCommand, int>
     {
         private readonly IGenericRepository<ProcessExecution> _repository;
+        private readonly ICurrentUserService _currentUserService;
 
-        public CreateProcessCommandHandler(IGenericRepository<ProcessExecution> repository)
+        public CreateProcessCommandHandler(
+            IGenericRepository<ProcessExecution> repository,
+            ICurrentUserService currentUserService)
         {
             _repository = repository;
+            _currentUserService = currentUserService;
         }
 
         public async Task<int> Handle(CreateProcessCommand request, CancellationToken cancellationToken)
@@ -28,9 +32,9 @@ namespace Manufacturing.Application.Processes.Commands.CreateProcess
             {
                 StartTime = request.StartTime,
                 EndTime = request.EndTime,
-                EmployeeId = request.EmployeeId,
                 ProductId = request.ProductId,
-                ProcessId = request.ProcessId,
+                ProcessId = request.ProductionProcessId,
+                Description = request.Description,
             };
 
             await _repository.AddAsync(entity, cancellationToken);

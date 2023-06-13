@@ -22,6 +22,7 @@ import EditProductDialog from '../Dialogs/EditProductDialog';
 import { useNavigate } from 'react-router-dom';
 import { TextField } from '@mui/material';
 import MainMenu from '../Menu/MainMenu';
+import { formatDate } from '../../common/dateUtils';
 
 const Products: React.FC = () => {
   const [totalCount, setTotalCount] = useState(0);
@@ -139,7 +140,7 @@ const Products: React.FC = () => {
                     <TableCell>{product.name}</TableCell>
                     <TableCell>{product.description}</TableCell>
                     <TableCell>{product.qualityStatus}</TableCell>
-                    <TableCell>{product.creationDate}</TableCell>
+                    <TableCell>{formatDate(product.creationDate)}</TableCell>
                     <TableCell style={{ whiteSpace: 'nowrap' }}>
                       <IconButton
                         onClick={() => {
