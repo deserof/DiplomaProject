@@ -1,0 +1,255 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="Manufacturing.Application.Processes.Commands.CreateProcess.CreateProcessCommandHandler" BaseTypeListCollapsed="true">
+    <Position X="3" Y="2.5" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAEBAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAAA=</HashCode>
+      <FileName>Processes\Commands\CreateProcess\CreateProcessCommand.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Manufacturing.Application.Processes.Commands.DeleteProcess.DeleteProcessCommandHandler" BaseTypeListCollapsed="true">
+    <Position X="10.75" Y="2.5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAABAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAAA=</HashCode>
+      <FileName>Processes\Commands\DeleteProcess\DeleteProcessCommand.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Manufacturing.Application.Processes.Commands.UploadProcessFile.UploadProcessFileCommandHandler" BaseTypeListCollapsed="true">
+    <Position X="5.75" Y="11" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAQAABAAAAAAAAAAAAAgAAAIAAAAAAAAAAAA=</HashCode>
+      <FileName>Processes\Commands\UploadProcessFile\UploadProcessFileCommand.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Manufacturing.Application.Processes.Commands.UploadProcessPhoto.UploadProcessPhotoCommandHandler" BaseTypeListCollapsed="true">
+    <Position X="8.5" Y="9.75" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAQAABAAAAAAAAAAAAAgAAAIAAAAAAAAAAAA=</HashCode>
+      <FileName>Processes\Commands\UploadProcessPhoto\UploadProcessPhotoCommand.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Manufacturing.Application.Processes.Queries.GetProcessesByProductId.GetProcessesByProductIdQueryHandler" BaseTypeListCollapsed="true">
+    <Position X="10.75" Y="4.5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAABAAAAAABAAAAAAAAAAIAAAAAAAAAAAA=</HashCode>
+      <FileName>Processes\Queries\GetProcessesByProductId\GetProcessesByProductIdQuery.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Manufacturing.Application.Processes.Queries.GetProcessesByProductId.ProcessVm">
+    <Position X="5.75" Y="8.5" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAgAAAAAAAAAAQAIAAgAAAAAAAAAAAARAA=</HashCode>
+      <FileName>Processes\Queries\GetProcessesByProductId\ProcessVm.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Manufacturing.Application.Processes.Queries.GetProcessPhoto.GetProcessPhotoQueryHandler" BaseTypeListCollapsed="true">
+    <Position X="13" Y="4.5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAABAAAAAAAAAAAAAAAAAIAAAAAAAAAAAA=</HashCode>
+      <FileName>Processes\Queries\GetProcessPhoto\GetProcessPhotoQuery.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Manufacturing.Application.Processes.Queries.GetProcessPhoto.ProcessPhotoVm">
+    <Position X="3" Y="8.75" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAAAAAAAAAIAAAAAAEAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Processes\Queries\GetProcessPhoto\ProcessPhotoVm.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Manufacturing.Application.Common.Exceptions.NotFoundException">
+    <Position X="13" Y="6.5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Common\Exceptions\NotFoundException.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Manufacturing.Application.Common.Mappings.MappingExtensions">
+    <Position X="8.5" Y="6.5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAA=</HashCode>
+      <FileName>Common\Mappings\MappingExtensions.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Manufacturing.Application.Common.Mappings.MappingProfile">
+    <Position X="10.75" Y="6.75" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACA=</HashCode>
+      <FileName>Common\Mappings\MappingProfile.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Manufacturing.Application.Common.Models.PaginatedList&lt;T&gt;">
+    <Position X="15.25" Y="8.25" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AACAAgAAAAAADAAAAAAAAAAUAAAAAAAAAAAAAIAAAAA=</HashCode>
+      <FileName>Common\Models\PaginatedList.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Manufacturing.Application.Products.Commands.CreateProduct.CreateProductCommandHandler" BaseTypeListCollapsed="true">
+    <Position X="5.75" Y="2.5" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAABAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAAA=</HashCode>
+      <FileName>Products\Commands\CreateProduct\CreateProductCommand.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Manufacturing.Application.Products.Commands.DeleteProduct.DeleteProductCommandHandler" BaseTypeListCollapsed="true">
+    <Position X="13" Y="2.5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAABAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAAA=</HashCode>
+      <FileName>Products\Commands\DeleteProduct\DeleteProductCommand.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Manufacturing.Application.Products.Commands.UpdateProduct.UpdateProductCommandHandler" BaseTypeListCollapsed="true">
+    <Position X="13" Y="8" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAABAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAAA=</HashCode>
+      <FileName>Products\Commands\UpdateProduct\UpdateProductCommand.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Manufacturing.Application.Products.Commands.UpdateProduct.UpdateProductCommandValidator">
+    <Position X="15.25" Y="6.75" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Products\Commands\UpdateProduct\UpdateProductCommandValidator.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Manufacturing.Application.Products.Queries.GetProductById.GetProductQueryHandler" BaseTypeListCollapsed="true">
+    <Position X="15.25" Y="4.5" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAABAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAAA=</HashCode>
+      <FileName>Products\Queries\GetProductById\GetProductQuery.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Manufacturing.Application.Products.Queries.GetProductsWithPagination.GetProductsQueryHandler" BaseTypeListCollapsed="true">
+    <Position X="3" Y="6.75" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAABAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAAA=</HashCode>
+      <FileName>Products\Queries\GetProductsWithPagination\GetProductsWithPaginationQuery.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Manufacturing.Application.Products.Queries.ViewModels.ProductVm" BaseTypeListCollapsed="true">
+    <Position X="10.75" Y="8.5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>QAACAAAAAAAgAAAAAAAAAAQCAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Products\Queries\ViewModels\ProductVm.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Manufacturing.Application.Users.Queries.GetUsersWithPaginationQuery.GetProductsQueryHandler" BaseTypeListCollapsed="true">
+    <Position X="5.75" Y="6.5" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAABAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAAA=</HashCode>
+      <FileName>Users\Queries\GetUsersWithPaginationQuery\GetUsersWithPaginationQuery.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Manufacturing.Application.Users.Queries.ViewModels.UserVm" BaseTypeListCollapsed="true">
+    <Position X="8.5" Y="12" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAACAEAAAAAAAAAgAAAAAAAAACAAAAAAAAAAAAAAAAg=</HashCode>
+      <FileName>Users\Queries\ViewModels\UserVm.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Manufacturing.Application.ProductionProcesses.Commands.CreateProductionProcess.CreateProductionProcessCommandHandler" BaseTypeListCollapsed="true">
+    <Position X="8.5" Y="2.5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAABAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAAA=</HashCode>
+      <FileName>ProductionProcesses\Commands\CreateProductionProcess\CreateProductionProcessCommand.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Manufacturing.Application.ProductionProcesses.Commands.DeleteProductionProcess.DeleteProductionProcessCommandHandler" BaseTypeListCollapsed="true">
+    <Position X="15.25" Y="2.5" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAABAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAAA=</HashCode>
+      <FileName>ProductionProcesses\Commands\DeleteProductionProcess\DeleteProductionProcessCommand.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Manufacturing.Application.ProductionProcesses.Commands.UpdateProductionProcess.UpdateProductionProcessCommandHandler" BaseTypeListCollapsed="true">
+    <Position X="3" Y="10.5" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAABAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAAA=</HashCode>
+      <FileName>ProductionProcesses\Commands\UpdateProductionProcess\UpdateProductionProcessCommand.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Manufacturing.Application.ProductionProcesses.Queries.GetProductionProcessesWithPagination.GetProcessesByProductIdQueryHandler" BaseTypeListCollapsed="true">
+    <Position X="8.5" Y="4.5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAABAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAAA=</HashCode>
+      <FileName>ProductionProcesses\Queries\GetProductionProcessesWithPagination\GetProductionProcessesWithPaginationQuery.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Manufacturing.Application.ProductionProcesses.Queries.GetProductionProcessesWithPagination.ProductionProcessVm" BaseTypeListCollapsed="true">
+    <Position X="8.5" Y="8" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAgAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>ProductionProcesses\Queries\GetProductionProcessesWithPagination\ProductionProcessVm.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Manufacturing.Application.Reports.Commands.GenerateReport.GenerateReportCommandHandler" BaseTypeListCollapsed="true">
+    <Position X="3" Y="4.75" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAABAAAAAAAAAAAAAAAAAIAAAAAAAAAAAA=</HashCode>
+      <FileName>Reports\Commands\GenerateReport\GenerateReportCommand.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Manufacturing.Application.Reports.Commands.GenerateReport.GenerateReportVm">
+    <Position X="5.75" Y="4.75" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAQAIAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Reports\Commands\GenerateReport\GenerateReportVm.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Interface Name="Manufacturing.Application.Common.Interfaces.IApplicationDbContext">
+    <Position X="17.25" Y="2.5" Width="2.75" />
+    <TypeIdentifier>
+      <HashCode>IAAEAAAAAAADBEAAAAAAAAAASAAAAAAAAAAAAAAAAAQ=</HashCode>
+      <FileName>Common\Interfaces\IApplicationDbContext.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Manufacturing.Application.Common.Interfaces.ICurrentUserService">
+    <Position X="13" Y="10" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Common\Interfaces\ICurrentUserService.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Manufacturing.Application.Common.Interfaces.IDateTime">
+    <Position X="10.75" Y="10.5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAACAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Common\Interfaces\IDateTime.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Manufacturing.Application.Common.Interfaces.IGenericRepository&lt;T&gt;">
+    <Position X="13" Y="11.25" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAEAAAAAAAgAAAAAIAAAIIA=</HashCode>
+      <FileName>Common\Interfaces\IGenericRepository.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Manufacturing.Application.Common.Mappings.IMapFrom&lt;T&gt;">
+    <Position X="15.25" Y="11.25" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Common\Mappings\IMapFrom.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

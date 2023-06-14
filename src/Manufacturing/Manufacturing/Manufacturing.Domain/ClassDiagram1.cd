@@ -1,2 +1,82 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<ClassDiagram /> 
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="Manufacturing.Domain.Entities.Employee">
+    <Position X="6" Y="6.25" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAEAAAAACAAAgAAAAAAAAQCAAAAAAAAAAAAAAAAg=</HashCode>
+      <FileName>Entities\Employee.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Manufacturing.Domain.Entities.ProcessExecution">
+    <Position X="8.25" Y="6.25" Width="2" />
+    <TypeIdentifier>
+      <HashCode>EAACAQgAAAAgAAAAAAAAAAAAIAAgEAAAAAAAQAAABAA=</HashCode>
+      <FileName>Entities\ProcessExecution.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Manufacturing.Domain.Entities.Product">
+    <Position X="12.75" Y="6.25" Width="2" />
+    <TypeIdentifier>
+      <HashCode>QAAEAAAAAAAhAAAAAAAAAAQCQAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Entities\Product.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Manufacturing.Domain.Entities.ProductFile">
+    <Position X="17.25" Y="6.25" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>EAACAgAAAAAAAAIAAAAAQAAAAAAAAAAAAAAgAABAAAA=</HashCode>
+      <FileName>Entities\ProductFile.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Manufacturing.Domain.Entities.ProductionOrder">
+    <Position X="10.5" Y="6.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>CAAAAAAAAAAAAAAAAAAAAAAACAAAAAAAAAEAgAACAAA=</HashCode>
+      <FileName>Entities\ProductionOrder.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Manufacturing.Domain.Entities.ProductionProcess">
+    <Position X="15" Y="6.25" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAjAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Entities\ProductionProcess.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Manufacturing.Domain.Entities.QualityControl">
+    <Position X="19.5" Y="6.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>EAACAgAEAAAAAAAAAAAAAAQACAAAAAAAAAAAAAACAAA=</HashCode>
+      <FileName>Entities\QualityControl.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Manufacturing.Domain.Common.BaseAuditableEntity">
+    <Position X="12.75" Y="2.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAQAAAAAAAAAAAAAAAACAAAAAAQAAAAAAAAAAAE=</HashCode>
+      <FileName>Common\BaseAuditableEntity.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Manufacturing.Domain.Common.BaseEntity">
+    <Position X="10" Y="2.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAgAAAAAAAAAAAAAAAAAAAAAAAEEAAABAAACAAA=</HashCode>
+      <FileName>Common\BaseEntity.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Manufacturing.Domain.Common.BaseEvent">
+    <Position X="15.5" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Common\BaseEvent.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Enum Name="Manufacturing.Domain.Entities.FileType">
+    <Position X="15.5" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAACAAAAAAAAAAAAAAAAAAAAAAAIAAAAA=</HashCode>
+      <FileName>Entities\ProductFile.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

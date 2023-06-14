@@ -1,2 +1,99 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<ClassDiagram /> 
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="Manufacturing.Infrastructure.Migrations.init">
+    <Position X="4.75" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAI=</HashCode>
+      <FileName>Migrations\20230609151750_init.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Manufacturing.Infrastructure.Migrations.updateproc">
+    <Position X="4.5" Y="6.25" Width="2.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAI=</HashCode>
+      <FileName>Migrations\20230611214721_updateproc.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Manufacturing.Infrastructure.Migrations.ApplicationDbContextModelSnapshot">
+    <Position X="10" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAA=</HashCode>
+      <FileName>Migrations\ApplicationDbContextModelSnapshot.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Manufacturing.Infrastructure.Common.MediatorExtensions">
+    <Position X="6.5" Y="5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAA=</HashCode>
+      <FileName>Common\MediatorExtensions.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Manufacturing.Infrastructure.Persistence.Configuration.ProductConfiguration" BaseTypeListCollapsed="true">
+    <Position X="8.75" Y="5" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Persistence\Configuration\ProductConfiguration.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Manufacturing.Infrastructure.Persistence.Interceptors.AuditableEntitySaveChangesInterceptor">
+    <Position X="1.5" Y="5" Width="2.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAQAEBAAAAAAAAAAAAAAAAAAAAAAQAAAAAAQAA=</HashCode>
+      <FileName>Persistence\Interceptors\AuditableEntitySaveChangesInterceptor.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Manufacturing.Infrastructure.Persistence.Interceptors.Extensions">
+    <Position X="7.5" Y="6.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Persistence\Interceptors\AuditableEntitySaveChangesInterceptor.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Manufacturing.Infrastructure.Persistence.Repositories.GenericRepository&lt;T&gt;" BaseTypeListCollapsed="true">
+    <Position X="4.5" Y="0.75" Width="3.25" />
+    <TypeIdentifier>
+      <HashCode>AAABAAAAAAAAAAAAAAABAAEAAAAAAAgAAAAAIAAAIIA=</HashCode>
+      <FileName>Persistence\Repositories\GenericRepository.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Manufacturing.Infrastructure.Persistence.ApplicationDbContext" BaseTypeListCollapsed="true">
+    <Position X="1.5" Y="0.75" Width="2.75" />
+    <TypeIdentifier>
+      <HashCode>IAAFAAAACQADAEAAAAAAAAAAWAAAAAAAAAAAAAAAAAQ=</HashCode>
+      <FileName>Persistence\ApplicationDbContext.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Manufacturing.Infrastructure.Persistence.ApplicationDbContextInitialiser">
+    <Position X="8" Y="0.75" Width="3" />
+    <TypeIdentifier>
+      <HashCode>EABBBAAAAAAABAAAAAAAAAAgIAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Persistence\ApplicationDbContextInitialiser.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Manufacturing.Infrastructure.Identity.ApplicationUser">
+    <Position X="9.25" Y="6.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAACAAAAAAAAAAAAAACAAA=</HashCode>
+      <FileName>Identity\ApplicationUser.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Manufacturing.Infrastructure.Services.DateTimeService" BaseTypeListCollapsed="true">
+    <Position X="8.25" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAACAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Services\DateTimeService.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Manufacturing.Infrastructure.ConfigureServices">
+    <Position X="6.5" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAACAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>ConfigureServices.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

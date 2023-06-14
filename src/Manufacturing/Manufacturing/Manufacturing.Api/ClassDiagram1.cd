@@ -1,2 +1,97 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<ClassDiagram /> 
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="Manufacturing.Api.Controllers.AccountController">
+    <Position X="1.5" Y="0.75" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAABAAAAAEAAAAAAAAAAAAAAAABAAAAAAAAAAAgAAA=</HashCode>
+      <FileName>Controllers\AccountController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Manufacturing.Api.Controllers.AuthorizationController">
+    <Position X="4" Y="0.75" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAQABAAAAAAAAAAAAABAAAAAAAAAAAAAAAAQAAAAAAA=</HashCode>
+      <FileName>Controllers\AuthorizationController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Manufacturing.Api.Controllers.ProcessesController">
+    <Position X="6" Y="2.25" Width="2" />
+    <TypeIdentifier>
+      <HashCode>ACABAAAAAAAAAggAAAAAAAAAABAAAAAAAAAgAAAAAAA=</HashCode>
+      <FileName>Controllers\ProcessesController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Manufacturing.Api.Controllers.ProductionProcessesController">
+    <Position X="8.25" Y="3" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAABAAAEAAAAAIAAAAAAAACBAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Controllers\ProductionProcessesController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Manufacturing.Api.Controllers.ProductsController">
+    <Position X="1.5" Y="5.25" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>IAABAAAAAAAAAAAAAAAAAAiAAAAAAAAAQAAACAAAAAA=</HashCode>
+      <FileName>Controllers\ProductsController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Manufacturing.Api.Controllers.ReportsController">
+    <Position X="8.25" Y="5.75" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAA=</HashCode>
+      <FileName>Controllers\ReportsController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Manufacturing.Api.Controllers.UsersController">
+    <Position X="1.5" Y="8" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>IAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Controllers\UsersController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Manufacturing.Api.Middlewares.ExceptionHandlingMiddleware">
+    <Position X="4" Y="3.25" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAQAAAAAACAAAAAAAAgAAAAAAQAAAAAAIAAAA=</HashCode>
+      <FileName>Middlewares\ExceptionHandlingMiddleware.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Manufacturing.Api.Services.CurrentUserService" BaseTypeListCollapsed="true">
+    <Position X="8.25" Y="0.75" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAABAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Services\CurrentUserService.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Manufacturing.Api.ViewModels.Account.RegisterViewModel">
+    <Position X="6" Y="5.25" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACAAAAAAAAAAAAAAAAAAAAACAAAAAAAAAAA=</HashCode>
+      <FileName>ViewModels\Account\RegisterViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Manufacturing.Api.ViewModels.ErrorDetails">
+    <Position X="1.5" Y="3.25" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAIAAAIAAAAAA=</HashCode>
+      <FileName>ViewModels\ErrorDetails.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Manufacturing.Api.ConfigureServices">
+    <Position X="6" Y="0.75" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAIAAAAAAAAAAAAAAAAAAAAQAAAAAAAA=</HashCode>
+      <FileName>ConfigureServices.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Manufacturing.Api.Worker" BaseTypeListCollapsed="true">
+    <Position X="4" Y="5.75" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAQAAAAABAAA=</HashCode>
+      <FileName>Worker.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
